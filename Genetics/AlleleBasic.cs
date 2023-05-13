@@ -23,17 +23,21 @@
         /// Creates a basic allele.
         /// </summary>
         /// <param name="representation">The character used to represent this
-        /// allele.</param>
+        /// allele. Must be lowercase.</param>
         /// <param name="description">A description of the effect of this
         /// allele./param>
         /// <param name="dominance">The dominance of the allele. Must be
         /// [0,100]</param>
         /// <exception cref="ArgumentException">If the dominance is less than
-        /// zero or greater than one hundred.</exception>
+        /// zero or greater than one hundred or the representation is not a
+        /// lowercase letter..</exception>
         internal AlleleBasic(char representation, string description,
             int dominance)
         {
-            this.Representation = representation;
+            if (representation > 'z' || representation < 'a')
+                throw new ArgumentException("The representation must be lowercase.");
+            else
+                this.Representation = representation;
             this.Description = description;
             if (dominance > 100 || dominance < 0)
                 throw new ArgumentException("Dominance must be [0,100].");
