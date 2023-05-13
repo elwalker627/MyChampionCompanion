@@ -5,19 +5,19 @@
 		/// <summary>
 		/// The character used to represent this allele.
 		/// </summary>
-		public char Representation { get; private set; }
+		public char Representation { get; protected set; }
 
 		/// <summary>
 		/// The description of this allele's effect.
 		/// </summary>
-		public string Description { get; private set; }
+		public string Description { get; protected set; }
 
 		/// <summary>
 		/// An int [0,100] that describes the dominance of this allele among its
 		/// alternate genes, with 100 being the most dominane and 0 being the
 		/// least dominant.
 		/// </summary>
-		protected int Dominance { get; private set; }
+		public int Dominance { get; protected set; }
 
         /// <summary>
         /// Creates a basic allele.

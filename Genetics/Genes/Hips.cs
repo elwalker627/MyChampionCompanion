@@ -17,7 +17,9 @@ namespace Genetics.Genes
         public override string Phenotype(AlleleBasic alleleA, AlleleBasic alleleB)
         {
             int score = (hipsScores[alleleA.Representation] +
-                hipsScores[alleleB.Representation]) / 2;
+                hipsScores[alleleB.Representation])/2;
+            char character = scoresHips[score];
+            return this.alleles[character].Description;
         }
 
         protected override void GenerateAlleles()
