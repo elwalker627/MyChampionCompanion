@@ -1,36 +1,39 @@
 ﻿using Vocabulary;
+using GeneralGenes;
 namespace Genetics;
 
 public abstract class DogGeneticsAbstract
 {
-    public AlleleSet Hips { get; protected set; }
-    public AlleleSet CoatColor { get; protected set; }
-    public AlleleSet CoatLength { get; protected set; }
-    public AlleleSet CoatTexture { get; protected set; }
-    public AlleleSet Shedding { get; protected set; }
-    public AlleleSet Markings { get; protected set; }
-    public AlleleSet AffectionLevel { get; protected set; }
-    public AlleleSet Friendliness { get; protected set; }
-    public AlleleSet Playfulness { get; protected set; }
-    public AlleleSet Adaptability { get; protected set; }
-    public AlleleSet MentalStimulationNeeds { get; protected set; }
-    public AlleleSet EnergyLevel { get; protected set; }
-    public AlleleSet Barking { get; protected set; }
-    public AlleleSet Reactivity { get; protected set; }
-    public AlleleSet Curiosity { get; protected set; }
-    public AlleleSet Confidence { get; protected set; }
-    public AlleleSet AffinityForHerding { get; protected set; }
-    public AlleleSet AffinityForSwimmingAndDockDiving { get; protected set; }
-    public AlleleSet AffinityForFastCAT { get; protected set; }
-    public AlleleSet AffinityForAgility { get; protected set; }
-    public AlleleSet AffinityForProtection { get; protected set; }
-    public AlleleSet AffinityForFlyball { get; protected set; }
-    public AlleleSet AffinityForBarnhunt { get; protected set; }
-    public AlleleSet AffinityForScentwork { get; protected set; }
-    public AlleleSet AffinityForDisc { get; protected set; }
-    public AlleleSet EyeHealth { get; protected set; }
-    public AlleleSet EyeColor { get; protected set; }
-    public AlleleSet HeartHealth { get; protected set; }
+    public AlleleSet Hips { get; private set; }
+    public AlleleSet CoatColor { get; private set; }
+    public AlleleSet CoatLength { get; private set; }
+    public AlleleSet CoatTexture { get; private set; }
+    public AlleleSet Shedding { get; private set; }
+    public AlleleSet Markings { get; private set; }
+    public AlleleSet AffectionLevel { get; private set; }
+    public AlleleSet Friendliness { get; private set; }
+    public AlleleSet Playfulness { get; private set; }
+    public AlleleSet Adaptability { get; private set; }
+
+    public AlleleSet MentalStimulationNeeds { get; private set; }
+    public AlleleSet EnergyLevel { get; private set; }
+    public AlleleSet Barking { get; private set; }
+    public AlleleSet Reactivity { get; private set; }
+    public AlleleSet Curiosity { get; private set; }
+    public AlleleSet Confidence { get; private set; }
+    public AlleleSet AffinityForHerding { get; private set; }
+    public AlleleSet AffinityForSwimmingAndDockDiving { get; private set; }
+    public AlleleSet AffinityForFastCAT { get; private set; }
+    public AlleleSet AffinityForAgility { get; private set; }
+
+    public AlleleSet AffinityForProtection { get; private set; }
+    public AlleleSet AffinityForFlyball { get; private set; }
+    public AlleleSet AffinityForBarnhunt { get; private set; }
+    public AlleleSet AffinityForScentwork { get; private set; }
+    public AlleleSet AffinityForDisc { get; private set; }
+    public AlleleSet EyeHealth { get; private set; }
+    public AlleleSet EyeColor { get; private set; }
+    public AlleleSet HeartHealth { get; private set; }
 
     public DogGeneticsAbstract(GeneticsOptionsAbstract options, bool isEthical)
 	{
@@ -39,6 +42,20 @@ public abstract class DogGeneticsAbstract
         else
             UnethicalDog(options);
     }
+
+    /// <summary>
+    /// Adds traits specific to this breed. Do NOT add traits already in the
+    /// parent class. This is for an ethical dog.
+    /// </summary>
+    /// <param name="options">The genetic options.</param>
+    protected abstract void BreedSpecificEthicalDog(GeneticsOptionsAbstract options);
+
+    /// <summary>
+    /// Adds traits specific to this breed. Do NOT add traits already in the
+    /// parent class. This is for an unethically bred dog.
+    /// </summary>
+    /// <param name="options">The genetic options.</param>
+    protected abstract void BreedSpecificUnethicalDog(GeneticsOptionsAbstract options);
 
     /// <summary>
     /// Sets up the genetics to be from an ethical dog.
@@ -53,82 +70,84 @@ public abstract class DogGeneticsAbstract
         CoatColor = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
 
         gene = options.GetGene(GeneName.CoatLength);
-        CoatColor = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
+        CoatLength = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
 
         gene = options.GetGene(GeneName.CoatTexture);
-        CoatColor = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
+        CoatTexture = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
 
         gene = options.GetGene(GeneName.Shedding);
-        CoatColor = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
+        Shedding = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
 
         gene = options.GetGene(GeneName.Markings);
-        CoatColor = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
+        Markings = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
 
         gene = options.GetGene(GeneName.AffectionLevel);
-        CoatColor = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
+        AffectionLevel = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
 
         gene = options.GetGene(GeneName.Friendliness);
-        CoatColor = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
+        Friendliness = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
 
         gene = options.GetGene(GeneName.Playfulness);
-        CoatColor = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
+        Playfulness = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
 
         gene = options.GetGene(GeneName.Adaptability);
-        CoatColor = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
+        Adaptability = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
 
         gene = options.GetGene(GeneName.MentalStimulationNeeds);
-        CoatColor = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
+        MentalStimulationNeeds = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
 
         gene = options.GetGene(GeneName.EnergyLevel);
-        CoatColor = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
+        EnergyLevel = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
 
         gene = options.GetGene(GeneName.Barking);
-        CoatColor = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
+        Barking = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
 
         gene = options.GetGene(GeneName.Reactivity);
-        CoatColor = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
+        Reactivity = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
 
         gene = options.GetGene(GeneName.Curiosity);
-        CoatColor = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
+        Curiosity = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
 
         gene = options.GetGene(GeneName.Confidence);
-        CoatColor = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
+        Confidence = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
 
         gene = options.GetGene(GeneName.AffinityForHerding);
-        CoatColor = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
+        AffinityForHerding = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
 
         gene = options.GetGene(GeneName.AffinityForSwimmingAndDockDiving);
-        CoatColor = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
+        AffinityForSwimmingAndDockDiving = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
 
         gene = options.GetGene(GeneName.AffinityForFastCAT);
-        CoatColor = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
+        AffinityForFastCAT = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
 
         gene = options.GetGene(GeneName.AffinityForAgility);
-        CoatColor = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
+        AffinityForAgility = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
 
         gene = options.GetGene(GeneName.AffinityForProtection);
-        CoatColor = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
+        AffinityForProtection = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
 
         gene = options.GetGene(GeneName.AffinityForFlyball);
-        CoatColor = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
+        AffinityForFlyball = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
 
         gene = options.GetGene(GeneName.AffinityForBarnhunt);
-        CoatColor = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
+        AffinityForBarnhunt = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
 
         gene = options.GetGene(GeneName.AffinityForScentwork);
-        CoatColor = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
+        AffinityForScentwork = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
 
         gene = options.GetGene(GeneName.AffinityForDisc);
-        CoatColor = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
+        AffinityForDisc = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
 
         gene = options.GetGene(GeneName.EyeHealth);
-        CoatColor = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
+        EyeHealth = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
 
         gene = options.GetGene(GeneName.EyeColor);
-        CoatColor = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
+        EyeColor = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
 
         gene = options.GetGene(GeneName.HeartHealth);
-        CoatColor = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
+        HeartHealth = new(gene.GetEthicalAllele(), gene.GetEthicalAllele(), gene);
+
+        BreedSpecificEthicalDog(options);
     }
 
     /// <summary>
@@ -144,82 +163,84 @@ public abstract class DogGeneticsAbstract
         CoatColor = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
 
         gene = options.GetGene(GeneName.CoatLength);
-        CoatColor = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
+        CoatLength = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
 
         gene = options.GetGene(GeneName.CoatTexture);
-        CoatColor = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
+        CoatTexture = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
 
         gene = options.GetGene(GeneName.Shedding);
-        CoatColor = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
+        Shedding = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
 
         gene = options.GetGene(GeneName.Markings);
-        CoatColor = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
+        Markings = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
 
         gene = options.GetGene(GeneName.AffectionLevel);
-        CoatColor = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
+        AffectionLevel = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
 
         gene = options.GetGene(GeneName.Friendliness);
-        CoatColor = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
+        Friendliness = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
 
         gene = options.GetGene(GeneName.Playfulness);
-        CoatColor = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
+        Playfulness = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
 
         gene = options.GetGene(GeneName.Adaptability);
-        CoatColor = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
+        Adaptability = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
 
         gene = options.GetGene(GeneName.MentalStimulationNeeds);
-        CoatColor = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
+        MentalStimulationNeeds = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
 
         gene = options.GetGene(GeneName.EnergyLevel);
-        CoatColor = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
+        EnergyLevel = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
 
         gene = options.GetGene(GeneName.Barking);
-        CoatColor = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
+        Barking = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
 
         gene = options.GetGene(GeneName.Reactivity);
-        CoatColor = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
+        Reactivity = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
 
         gene = options.GetGene(GeneName.Curiosity);
-        CoatColor = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
+        Curiosity = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
 
         gene = options.GetGene(GeneName.Confidence);
-        CoatColor = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
+        Confidence = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
 
         gene = options.GetGene(GeneName.AffinityForHerding);
-        CoatColor = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
+        AffinityForHerding = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
 
         gene = options.GetGene(GeneName.AffinityForSwimmingAndDockDiving);
-        CoatColor = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
+        AffinityForSwimmingAndDockDiving = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
 
         gene = options.GetGene(GeneName.AffinityForFastCAT);
-        CoatColor = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
+        AffinityForFastCAT = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
 
         gene = options.GetGene(GeneName.AffinityForAgility);
-        CoatColor = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
+        AffinityForAgility = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
 
         gene = options.GetGene(GeneName.AffinityForProtection);
-        CoatColor = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
+        AffinityForProtection = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
 
         gene = options.GetGene(GeneName.AffinityForFlyball);
-        CoatColor = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
+        AffinityForFlyball = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
 
         gene = options.GetGene(GeneName.AffinityForBarnhunt);
-        CoatColor = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
+        AffinityForBarnhunt = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
 
         gene = options.GetGene(GeneName.AffinityForScentwork);
-        CoatColor = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
+        AffinityForScentwork = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
 
         gene = options.GetGene(GeneName.AffinityForDisc);
-        CoatColor = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
+        AffinityForDisc = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
 
         gene = options.GetGene(GeneName.EyeHealth);
-        CoatColor = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
+        EyeHealth = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
 
         gene = options.GetGene(GeneName.EyeColor);
-        CoatColor = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
+        EyeColor = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
 
         gene = options.GetGene(GeneName.HeartHealth);
-        CoatColor = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
+        HeartHealth = new(gene.GetAnyAllele(), gene.GetAnyAllele(), gene);
+
+        BreedSpecificUnethicalDog(options);
     }
 }
 

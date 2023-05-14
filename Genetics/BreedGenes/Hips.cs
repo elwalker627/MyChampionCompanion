@@ -1,5 +1,5 @@
 ﻿using Genetics;
-namespace BasicGenes;
+namespace GeneralGenes;
 
 public class Hips : GeneInformationAbstract
 {

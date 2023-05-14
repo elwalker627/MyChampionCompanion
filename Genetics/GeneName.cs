@@ -1,5 +1,4 @@
 ﻿using Genetics;
-
 namespace Vocabulary;
 
 /// <summary>
@@ -42,7 +41,7 @@ public class GeneName
     /// Creates a gene name.
     /// </summary>
     /// <param name="name">The name of the gene.</param>
-    private GeneName(string name)
+    protected GeneName(string name)
 	{
 		this.Name = name;
 	}

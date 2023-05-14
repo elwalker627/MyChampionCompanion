@@ -1,23 +1,22 @@
 ﻿using Genetics;
-namespace IcelandicSheepdog
-{
+namespace IcelandicSheepdog;
+
 	public class SheddingIcelandicSheepdog : GeneInformationAbstract
 	{
-        public override bool EthicalPhenotype(AlleleBasic a, AlleleBasic b)
-        {
-            return a.Representation == 's' && b.Representation == 's';
-        }
+    public override bool EthicalPhenotype(AlleleBasic a, AlleleBasic b)
+    {
+        return a.Representation == 's' && b.Representation == 's';
+    }
 
-        protected override void GenerateAlleles()
-        {
-            this.AddAllele(new('s', "Shedding", Recessive));
-            this.AddAllele(new('n', "Non-shedding", Dominant));
-        }
+    protected override void GenerateAlleles()
+    {
+        this.AddAllele(new('s', "Shedding", Recessive));
+        this.AddAllele(new('n', "Non-shedding", Dominant));
+    }
 
-        protected override bool IsNaturallyOcurring(char character)
-        {
-            return character == 's';
-        }
+    protected override bool IsNaturallyOcurring(char character)
+    {
+        return character == 's';
     }
 }
 

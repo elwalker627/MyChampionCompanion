@@ -1,8 +1,7 @@
 ﻿using Genetics;
-using GeneralGenes;
 namespace IcelandicSheepdog;
 
-public class FriendlinessIcelandicSheepdog : Friendliness
+public class HeartHealthIcelandicSheepdog : GeneInformationAbstract
 {
     public override bool EthicalPhenotype(AlleleBasic a, AlleleBasic b)
     {
@@ -10,9 +9,15 @@ public class FriendlinessIcelandicSheepdog : Friendliness
             IsNaturallyOcurring(b.Representation);
     }
 
+    protected override void GenerateAlleles()
+    {
+        this.AddAllele(new('h', "Healthy Heart", Recessive));
+        this.AddAllele(new('u', "Unhealthy Heart", Dominant));
+    }
+
     protected override bool IsNaturallyOcurring(char character)
     {
-        return character == 'f';
+        return character == 'h';
     }
 }
 

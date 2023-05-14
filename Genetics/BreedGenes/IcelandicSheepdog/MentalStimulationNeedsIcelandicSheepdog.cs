@@ -1,7 +1,7 @@
 ﻿using Genetics;
 namespace IcelandicSheepdog;
 
-	public class BarkingLevelIcelandicSheepdog : GeneInformationAbstract
+	public class MentalStimulationNeedsIcelandicSheepdog : GeneInformationAbstract
 {
     public override bool EthicalPhenotype(AlleleBasic a, AlleleBasic b)
     {
@@ -11,13 +11,13 @@ namespace IcelandicSheepdog;
 
     protected override void GenerateAlleles()
     {
-        this.AddAllele(new('b', "Barky", Dominant));
-        this.AddAllele(new('q', "Quiet", Recessive));
+        this.AddAllele(new('h', "High Mental Stimulation Needs", Dominant));
+        this.AddAllele(new('l', "Low Mental Stimulation Needs", Recessive));
     }
 
     protected override bool IsNaturallyOcurring(char character)
     {
-        return character == 'b';
+        return character == 'h';
     }
 }
 

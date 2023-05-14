@@ -2,7 +2,7 @@
 using GeneralGenes;
 namespace IcelandicSheepdog;
 
-public class FriendlinessIcelandicSheepdog : Friendliness
+public class AffinityForHerdingIcelandicSheepdog : AffinityForHerding
 {
     public override bool EthicalPhenotype(AlleleBasic a, AlleleBasic b)
     {
@@ -10,9 +10,15 @@ public class FriendlinessIcelandicSheepdog : Friendliness
             IsNaturallyOcurring(b.Representation);
     }
 
+    protected override void GenerateAlleles()
+    {
+        this.AddAllele(new('h', "Loves Herding", Recessive));
+        this.AddAllele(new('i', "Indifferent to Herding", Dominant));
+    }
+
     protected override bool IsNaturallyOcurring(char character)
     {
-        return character == 'f';
+        return character == 'h';
     }
 }
 
