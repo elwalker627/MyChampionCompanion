@@ -15,7 +15,7 @@ public class EnergyLevelIcelandicSheepdog : GeneInformationAbstract
         this.AddAllele(new('l', "Low Energy", Dominant));
     }
 
-    protected override bool IsNaturallyOcurring(char character)
+    public override bool IsNaturallyOcurring(char character)
     {
         return character == 'h';
     }

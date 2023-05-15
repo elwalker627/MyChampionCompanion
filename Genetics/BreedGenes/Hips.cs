@@ -5,14 +5,12 @@ public class Hips : GeneInformationAbstract
 {
     private Dictionary<char, int> hipsScores;
     private Dictionary<int, char> scoresHips;
-    private const int EthicalCutoff = 3;
+    public const int EthicalCutoff = 3;
 
     /// <inheritdoc/>
     public Hips() : base()
     {
         this.IsIncompletelyDominant = true;
-        hipsScores = new();
-        scoresHips = new();
     }
 
     /// <summary>
@@ -36,12 +34,15 @@ public class Hips : GeneInformationAbstract
 
     protected override void GenerateAlleles()
     {
-        this.AddAlleleAndScore(new('e', "Excellent hips", Recessive), 5);
-        this.AddAlleleAndScore(new('g', "Good hips", Dominant), 4);
-        this.AddAlleleAndScore(new('a', "Acceptable hips", Dominant), 3);
-        this.AddAlleleAndScore(new('f', "Fair hips", Recessive), 2);
-        this.AddAlleleAndScore(new('p', "Poor hips", Recessive), 1);
-        this.AddAlleleAndScore(new('b', "Bad hips", Recessive), 0);
+        hipsScores = new();
+        scoresHips = new();
+
+        this.AddAlleleAndScore(new('e', "Excellent Hips", Recessive), 5);
+        this.AddAlleleAndScore(new('g', "Good Hips", Dominant), 4);
+        this.AddAlleleAndScore(new('a', "Acceptable Hips", Dominant), 3);
+        this.AddAlleleAndScore(new('f', "Fair Hips", Recessive), 2);
+        this.AddAlleleAndScore(new('p', "Poor Hips", Recessive), 1);
+        this.AddAlleleAndScore(new('b', "Bad Hips", Recessive), 0);
     }
 
     /// <summary>
@@ -62,8 +63,13 @@ public class Hips : GeneInformationAbstract
         return HipScore(a, b) >= EthicalCutoff;
     }
 
-    protected override bool IsNaturallyOcurring(char character)
+    public override bool EthicalToBreed(AlleleBasic a, AlleleBasic b)
     {
-        return this.hipsScores[character] >= EthicalCutoff;
+        return EthicalPhenotype(a, b);
+    }
+
+    public override bool IsNaturallyOcurring(char character)
+    {
+        return true;
     }
 }

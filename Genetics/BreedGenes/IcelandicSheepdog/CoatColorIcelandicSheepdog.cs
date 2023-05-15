@@ -23,7 +23,7 @@ public class CoatColorIcelandicSheepdog : GeneInformationAbstract
     /// </summary>
     /// <param name="allele">The representation of the allele.</param>
     /// <returns>True if the allele is on standard, false otherwise.</returns>
-    protected override bool IsStandard(char allele)
+    public override bool IsStandard(char allele)
     {
         return allele == 't' || allele == 'b' || allele == 'c' || allele == 'g'
             || allele == 'a' || allele == 's' || allele == 'n' || allele == 'f'
@@ -37,7 +37,7 @@ public class CoatColorIcelandicSheepdog : GeneInformationAbstract
     /// <param name="allele">The representation of the allele.</param>
     /// <returns>True if the allele is naturally ocurring, false otherwise.
     /// </returns>
-    protected override bool IsNaturallyOcurring(char allele)
+    public override bool IsNaturallyOcurring(char allele)
     {
         return allele == 'i' || allele == 'l' || allele == 'o' || allele == 'e'
             || allele == 'm' || allele == 'y' || allele == 'u' || allele == 'v'

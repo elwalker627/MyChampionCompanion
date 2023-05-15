@@ -4,15 +4,10 @@ namespace IcelandicSheepdog;
 
 public class FriendlinessIcelandicSheepdog : Friendliness
 {
-    public override bool EthicalPhenotype(AlleleBasic a, AlleleBasic b)
+    public override bool EthicalToBreed(AlleleBasic a, AlleleBasic b)
     {
-        return IsNaturallyOcurring(a.Representation) &&
-            IsNaturallyOcurring(b.Representation);
-    }
-
-    protected override bool IsNaturallyOcurring(char character)
-    {
-        return character == 'f';
+        return a.Representation == 'f' ||
+            b.Representation == 'f';
     }
 }
 

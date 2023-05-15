@@ -9,4 +9,3 @@ public class Playfulness : PersonalityTrait
         this.AddAllele(new('s', "Serious", Recessive));
     }
 }
-

@@ -73,23 +73,25 @@ public abstract class GeneInformationAbstract
     /// <param name="allele">The allele whose ethicalness is being determined.
     /// </param>
     /// <returns>True if the phenotype is ethical, false otherwise.</returns>
-    public bool EthicalToBreed(AlleleBasic a, AlleleBasic b)
+    public virtual bool EthicalToBreed(AlleleBasic a, AlleleBasic b)
     {
         return IsStandard(a.Representation) && IsStandard(b.Representation);
     }
 
     /// <summary>
-    /// Gets an allele created from an ethical breeder.
+    /// Gets an allele created from an ethical breeder. It is merely a single
+    /// naturally ocurring allele, paired with itself may be unethical to breed
+    /// from.
     /// </summary>
     /// <returns>An allele created from an ethical breeder.</returns>
     public AlleleBasic GetEthicalAllele()
     {
         Random random = new();
-        AlleleBasic allele = this.alleles[random.Next(this.alleles.Count)];
-        while (IsUnethical(allele.Representation))
+        AlleleBasic allele;
+        do
         {
-            allele = this.alleles[random.Next(this.alleles.Count)];
-        }
+            allele = this.GetAnyAllele();
+        } while (IsUnethical(allele.Representation));
         return allele;
     }
 
@@ -100,7 +102,7 @@ public abstract class GeneInformationAbstract
     /// <param name="character">The representation for the allele.</param>
     /// <returns>True if the allele associated with the character is unethical,
     /// false otherwise.</returns>
-    protected virtual bool IsUnethical(char character)
+    public virtual bool IsUnethical(char character)
     {
         return !IsNaturallyOcurring(character);
     }
@@ -112,7 +114,7 @@ public abstract class GeneInformationAbstract
     /// <param name="character">The representation for the allele.</param>
     /// <returns>True if the allele associated with the character is standard,
     /// false otherwise.</returns>
-    protected virtual bool IsStandard(char character)
+    public virtual bool IsStandard(char character)
     {
         return IsNaturallyOcurring(character);
     }
@@ -124,7 +126,7 @@ public abstract class GeneInformationAbstract
     /// <param name="character">The representation for the allele.</param>
     /// <returns>True if the allele associated with the character is naturally
     /// ocurring, false otherwise.</returns>
-    protected abstract bool IsNaturallyOcurring(char character);
+    public abstract bool IsNaturallyOcurring(char character);
 
     /// <summary>
     /// Gets any allele.
@@ -132,15 +134,29 @@ public abstract class GeneInformationAbstract
     /// <returns>An allele.</returns>
     public AlleleBasic GetAnyAllele()
     {
-        return this.alleles[new Random().Next(this.alleles.Count)];
+        return this.alleles.ElementAt(new Random().Next(this.alleles.Count)).Value;
+    }
+
+    /// <summary>
+    /// Adds the specified allele to this gene.
+    /// </summary>
+    /// <param name="representation">The character representation of the allele.
+    /// </param>
+    /// <param name="description">The description of the allele.</param>
+    /// <param name="dominance">The dominance of the allele.</param>
+    protected void AddAllele(char representation, String description,
+        int dominance)
+    {
+        this.alleles.Add(representation,
+            new(representation, description, dominance));
     }
 
     /// <summary>
     /// Adds the specified allele to this gene.
     /// </summary>
     /// <param name="toAdd">The allele to add.</param>
-    protected void AddAllele(AlleleBasic toAdd)
+    protected void AddAllele(AlleleBasic allele)
     {
-        this.alleles.Add(toAdd.Representation, toAdd);
+        this.alleles.Add(allele.Representation, allele);
     }
 }

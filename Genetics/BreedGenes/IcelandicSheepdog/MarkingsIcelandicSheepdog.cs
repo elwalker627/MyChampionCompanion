@@ -48,7 +48,7 @@ namespace IcelandicSheepdog;
         this.AddAllele(new('l', "Liver Markings", Dominant));
     }
 
-    protected override bool IsNaturallyOcurring(char character)
+    public override bool IsNaturallyOcurring(char character)
     {
         return !IsUnethical(character);
     }

@@ -4,9 +4,10 @@ namespace IcelandicSheepdog;
 
 public class ConfidenceIcelandicSheepdog : Confidence
 {
-    protected override bool IsStandard(char character)
+    public override bool EthicalToBreed(AlleleBasic a, AlleleBasic b)
     {
-        return character == 'c';
+        return a.Representation == 'c' ||
+            b.Representation == 'c';
     }
 }
 

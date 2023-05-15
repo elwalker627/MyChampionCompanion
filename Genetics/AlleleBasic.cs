@@ -1,23 +1,23 @@
 ﻿namespace Genetics;
 
-	public class AlleleBasic : IComparable<AlleleBasic>
-	{
-		/// <summary>
-		/// The character used to represent this allele.
-		/// </summary>
-		public char Representation { get; protected set; }
+public class AlleleBasic : IComparable<AlleleBasic>
+{
+	/// <summary>
+	/// The character used to represent this allele.
+	/// </summary>
+	public char Representation { get; protected set; }
 
-		/// <summary>
-		/// The description of this allele's effect.
-		/// </summary>
-		public string Description { get; protected set; }
+	/// <summary>
+	/// The description of this allele's effect.
+	/// </summary>
+	public string Description { get; protected set; }
 
-		/// <summary>
-		/// An int [0,100] that describes the dominance of this allele among its
-		/// alternate genes, with 100 being the most dominane and 0 being the
-		/// least dominant.
-		/// </summary>
-		public int Dominance { get; protected set; }
+	/// <summary>
+	/// An int [0,100] that describes the dominance of this allele among its
+	/// alternate genes, with 100 being the most dominane and 0 being the
+	/// least dominant. 50 is considered on the recessive side.
+	/// </summary>
+	public int Dominance { get; protected set; }
 
     /// <summary>
     /// Creates a basic allele.
@@ -63,14 +63,31 @@
 				return this.Dominance - other.Dominance;
     }
 
-		/// <summary>
-		/// Determines if this allele is more dominant.
-		/// </summary>
-		/// <param name="other">The other allele. Will throw an exception if is
-		/// null.</param>
-		/// <returns>True if this is dominant, false otherwise.</returns>
-		public bool IsDominantTo(AlleleBasic other)
-		{
-			return this.CompareTo(other) > 0;
-		}
+	/// <summary>
+	/// Determines if this allele is more dominant.
+	/// </summary>
+	/// <param name="other">The other allele. Will throw an exception if is
+	/// null.</param>
+	/// <returns>True if this is dominant, false otherwise.</returns>
+	public bool IsDominantTo(AlleleBasic other)
+	{
+		return this.CompareTo(other) > 0;
+	}
+
+    public override bool Equals(object? obj)
+    {
+        if (obj is null || !(obj is AlleleBasic))
+            return false;
+
+        AlleleBasic other = (AlleleBasic)obj;
+
+        return other.Representation == this.Representation &&
+            other.Description == this.Description &&
+            other.Dominance == this.Dominance;
+    }
+
+    public override string ToString()
+    {
+        return Description;
+    }
 }

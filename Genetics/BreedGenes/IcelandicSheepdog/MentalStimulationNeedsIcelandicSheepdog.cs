@@ -15,7 +15,7 @@ namespace IcelandicSheepdog;
         this.AddAllele(new('l', "Low Mental Stimulation Needs", Recessive));
     }
 
-    protected override bool IsNaturallyOcurring(char character)
+    public override bool IsNaturallyOcurring(char character)
     {
         return character == 'h';
     }

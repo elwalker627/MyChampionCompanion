@@ -9,15 +9,20 @@ public class EyeHealth : GeneInformationAbstract
             IsNaturallyOcurring(b.Representation);
     }
 
+    public override bool EthicalToBreed(AlleleBasic a, AlleleBasic b)
+    {
+        return a.Representation == 'h' || b.Representation == 'h';
+    }
+
     protected override void GenerateAlleles()
     {
         this.AddAllele(new('h', "Healthy Eyes", Dominant));
         this.AddAllele(new('u', "Unhealthy Eyes", Recessive));
     }
 
-    protected override bool IsNaturallyOcurring(char character)
+    public override bool IsNaturallyOcurring(char character)
     {
-        return character == 'h';
+        return true;
     }
 }
 

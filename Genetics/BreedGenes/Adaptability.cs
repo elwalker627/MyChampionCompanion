@@ -1,7 +1,7 @@
 ﻿using Genetics;
 namespace GeneralGenes;
 
-	public class Adaptability : PersonalityTrait
+public class Adaptability : PersonalityTrait
 {
     protected override void GenerateAlleles()
     {

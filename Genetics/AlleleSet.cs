@@ -1,28 +1,32 @@
 ﻿namespace Genetics;
 
-	/// <summary>
-	/// Represents a set of two alleles.
-	/// </summary>
-	public class AlleleSet
-	{
-		public AlleleBasic alleleA { get; private set; }
-		public AlleleBasic alleleB { get; private set; }
+/// <summary>
+/// Represents a set of two alleles.
+/// </summary>
+public class AlleleSet
+{
+	public AlleleBasic alleleA { get; private set; }
+	public AlleleBasic alleleB { get; private set; }
+    public String Genotype { get; private set; }
+    public String Phenotype { get; private set; }
     private GeneInformationAbstract geneInfo;
 
-		/// <summary>
-		/// Creates an allele set with the given alleles.
-		/// </summary>
-		/// <param name="alleleA">One of the alleles for the set.</param>
-		/// <param name="alleleB">One of the alleles for the set.</param>
-		public AlleleSet(AlleleBasic alleleA, AlleleBasic alleleB,
-        GeneInformationAbstract geneInfo)
-		{
-			this.alleleA = alleleA;
-			this.alleleB = alleleB;
+	/// <summary>
+	/// Creates an allele set with the given alleles.
+	/// </summary>
+	/// <param name="alleleA">One of the alleles for the set.</param>
+	/// <param name="alleleB">One of the alleles for the set.</param>
+	public AlleleSet(AlleleBasic alleleA, AlleleBasic alleleB,
+    GeneInformationAbstract geneInfo)
+	{
+		this.alleleA = alleleA;
+		this.alleleB = alleleB;
         this.geneInfo = geneInfo;
+        this.Genotype = GetGenotype();
+        this.Phenotype = GetPhenotype();
     }
 
-    public string Phenotype()
+    public string GetPhenotype()
     {
         return this.geneInfo.Phenotype(alleleA, alleleB);
     }
@@ -36,17 +40,17 @@
     /// alphabetically uppercase.
     /// </summary>
     /// <returns>The genotype of this gene.</returns>
-    public string Genotype()
+    private string GetGenotype()
     {
         int comparison = alleleA.CompareTo(alleleB);
 
         //One is dominant one is recessive
         if (comparison > 0)
-            return (alleleA.Representation + 'A' - 'a')
-                + alleleB.Representation + "";
+            return ((char)(alleleA.Representation + 'A' - 'a')) + ""
+                + alleleB.Representation;
         else if (comparison < 0)
-            return (alleleB.Representation + 'A' - 'a')
-                + alleleA.Representation + "";
+            return ((char)(alleleB.Representation + 'A' - 'a')) + ""
+                + alleleA.Representation;
 
         //Equal dominance (>50)
         if (alleleA.Dominance > 50)
@@ -57,7 +61,6 @@
         else
             return AlphabeticalOrder(alleleA.Representation,
                 alleleB.Representation, false);
-
     }
 
     /// <summary>
@@ -75,9 +78,9 @@
         if (uppercase)
             offset = 'A' - 'a';
         if (a - b > 0)
-            return (b + offset) + (a + offset) + "";
+            return ((char)(b + offset)) + "" + ((char)(a + offset));
         else
-            return (a + offset) + (b + offset) + "";
+            return ((char)(a + offset)) + "" + ((char)(b + offset));
     }
 
     /// <summary>

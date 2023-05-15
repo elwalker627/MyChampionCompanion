@@ -16,7 +16,7 @@ public class RearDewClawsIcelandicSheepdog : GeneInformationAbstract
         this.AddAllele(new('d', "Double Front Dew Claws", 0));
     }
 
-    protected override bool IsNaturallyOcurring(char character)
+    public override bool IsNaturallyOcurring(char character)
     {
         return character == 's' || character == 'd';
     }

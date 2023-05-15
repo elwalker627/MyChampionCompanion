@@ -16,7 +16,7 @@ public class EyeColorIcelandicSheedog : GeneInformationAbstract
         this.AddAllele(new('u', "Blue Eyes", 0));
     }
 
-    protected override bool IsNaturallyOcurring(char character)
+    public override bool IsNaturallyOcurring(char character)
     {
         return character == 'b';
     }

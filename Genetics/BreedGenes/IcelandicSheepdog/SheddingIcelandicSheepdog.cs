@@ -14,7 +14,7 @@ namespace IcelandicSheepdog;
         this.AddAllele(new('n', "Non-shedding", Dominant));
     }
 
-    protected override bool IsNaturallyOcurring(char character)
+    public override bool IsNaturallyOcurring(char character)
     {
         return character == 's';
     }

@@ -16,7 +16,7 @@ public class AffinityForHerdingIcelandicSheepdog : AffinityForHerding
         this.AddAllele(new('i', "Indifferent to Herding", Dominant));
     }
 
-    protected override bool IsNaturallyOcurring(char character)
+    public override bool IsNaturallyOcurring(char character)
     {
         return character == 'h';
     }

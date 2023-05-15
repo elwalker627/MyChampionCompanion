@@ -10,7 +10,7 @@ public class AffinityForProtectionIcelandicSheepdog : AffinityForProtection
             IsNaturallyOcurring(b.Representation);
     }
 
-    protected override bool IsNaturallyOcurring(char character)
+    public override bool IsNaturallyOcurring(char character)
     {
         return character == 'i';
     }

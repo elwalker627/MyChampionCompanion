@@ -1,5 +1,4 @@
-﻿using Genetics;
-namespace GeneralGenes;
+﻿namespace Genetics;
 
 public abstract class PersonalityTrait : GeneInformationAbstract
 {
@@ -8,9 +7,8 @@ public abstract class PersonalityTrait : GeneInformationAbstract
         return true;
     }
 
-    protected override bool IsNaturallyOcurring(char character)
+    public override bool IsNaturallyOcurring(char character)
     {
         return true;
     }
 }
-

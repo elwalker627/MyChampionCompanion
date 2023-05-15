@@ -15,7 +15,7 @@ public class CoatLengthIcelandicSheepdog : GeneInformationAbstract
         this.AddAllele(new('l', "Longhair", Dominant));
     }
 
-    protected override bool IsNaturallyOcurring(char character)
+    public override bool IsNaturallyOcurring(char character)
     {
         return character == 's' || character == 'l';
     }

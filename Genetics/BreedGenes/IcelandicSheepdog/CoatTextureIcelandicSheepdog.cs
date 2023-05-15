@@ -15,7 +15,7 @@ public class CoatTexture : GeneInformationAbstract
         this.AddAllele(new('c', "Curly Coat", Dominant));
     }
 
-    protected override bool IsNaturallyOcurring(char character)
+    public override bool IsNaturallyOcurring(char character)
     {
         return character == 'd';
     }
