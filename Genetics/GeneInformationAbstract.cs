@@ -9,6 +9,7 @@ public abstract class GeneInformationAbstract
     /// </summary>
     protected Dictionary<int, AlleleBasic> alleles;
 
+    public GeneName Name { get; protected set; }
     protected int Recessive { get { return 0; } }
     protected int Dominant { get { return 100; } }
 
@@ -51,7 +52,7 @@ public abstract class GeneInformationAbstract
     /// <param name="alleleA">One of the alleles in the genetics.</param>
     /// <param name="alleleB">One of the alleles in the genetics.</param>
     /// <returns>A string describing the phenotype.</returns>
-    public virtual string Phenotype(AlleleBasic alleleA, AlleleBasic alleleB)
+    public virtual String Phenotype(AlleleBasic alleleA, AlleleBasic alleleB)
     {
         if (alleleA.IsDominantTo(alleleB))
             return alleleA.Description;

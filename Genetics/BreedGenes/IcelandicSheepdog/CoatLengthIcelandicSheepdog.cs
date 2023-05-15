@@ -5,7 +5,7 @@ public class CoatLengthIcelandicSheepdog : GeneInformationAbstract
 {
     public override bool EthicalPhenotype(AlleleBasic a, AlleleBasic b)
     {
-        return (a.Representation == 's' && b.Representation == 's') &&
+        return (a.Representation == 's' && b.Representation == 's') ||
             (a.Representation == 'l' || b.Representation == 'l');
     }
 

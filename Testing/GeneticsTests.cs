@@ -125,12 +125,12 @@ public class GeneticsTests
             AlleleSet set = new(a, b, genes);
 
             // Find which alleles are present
-            bool hasStripes = a.Representation == 's' || b.Representation == 's';
-            bool hasPlaid = a.Representation == 'p' || b.Representation == 'p';
-            bool hasDots = a.Representation == 'd' || b.Representation == 'd';
-            bool hasNone = a.Representation == 'n' || b.Representation == 'n';
-            bool hasCamo = a.Representation == 'c' || b.Representation == 'c';
-            bool hasFlowers = a.Representation == 'f' || b.Representation == 'f';
+            bool hasStripes = OneIs(a, b, 's');
+            bool hasPlaid = OneIs(a, b, 'p');
+            bool hasDots = OneIs(a, b, 'd');
+            bool hasNone = OneIs(a, b, 'n');
+            bool hasCamo = OneIs(a, b, 'c');
+            bool hasFlowers = OneIs(a, b, 'f');
 
             // Test for correct genotype
             if (hasStripes && hasDots)
@@ -180,12 +180,12 @@ public class GeneticsTests
             AlleleSet set = new(a, b, genes);
 
             // Find which alleles are present
-            bool hasStripes = a.Representation == 's' || b.Representation == 's';
-            bool hasPlaid = a.Representation == 'p' || b.Representation == 'p';
-            bool hasDots = a.Representation == 'd' || b.Representation == 'd';
-            bool hasNone = a.Representation == 'n' || b.Representation == 'n';
-            bool hasCamo = a.Representation == 'c' || b.Representation == 'c';
-            bool hasFlowers = a.Representation == 'f' || b.Representation == 'f';
+            bool hasStripes = OneIs(a, b, 's');
+            bool hasPlaid = OneIs(a, b, 'p');
+            bool hasDots = OneIs(a, b, 'd');
+            bool hasNone = OneIs(a, b, 'n');
+            bool hasCamo = OneIs(a, b, 'c');
+            bool hasFlowers = OneIs(a, b, 'f');
 
             if (hasStripes && hasNone)
                 Assert.AreEqual("Stripes", set.Phenotype);
@@ -252,7 +252,7 @@ public class GeneticsTests
             AlleleBasic alleleA = geneInfo.GetAnyAllele();
             AlleleBasic alleleB = geneInfo.GetAnyAllele();
 
-            if (alleleA.Representation == 'f' || alleleB.Representation == 'f')
+            if (OneIs(alleleA, alleleB, 'f'))
                 Assert.AreEqual("Friendly", geneInfo.Phenotype(alleleA, alleleB));
             else
                 Assert.AreEqual("Unfriendly", geneInfo.Phenotype(alleleA, alleleB));
@@ -386,7 +386,7 @@ public class GeneticsTests
             AlleleBasic alleleA = geneInfo.GetAnyAllele();
             AlleleBasic alleleB = geneInfo.GetAnyAllele();
 
-            if (alleleA.Representation == 'h' || alleleB.Representation == 'h')
+            if (OneIs(alleleA, alleleB, 'h'))
                 Assert.AreEqual("Healthy Eyes", geneInfo.Phenotype(alleleA, alleleB));
             else
                 Assert.AreEqual("Unhealthy Eyes", geneInfo.Phenotype(alleleA, alleleB));
@@ -404,7 +404,7 @@ public class GeneticsTests
             AlleleBasic alleleA = geneInfo.GetAnyAllele();
             AlleleBasic alleleB = geneInfo.GetAnyAllele();
 
-            if(alleleA.Representation == 'h' || alleleB.Representation == 'h')
+            if(OneIs(alleleA, alleleB, 'h'))
             {
                 Assert.IsTrue(geneInfo.EthicalPhenotype(alleleA, alleleB));
                 Assert.IsTrue(geneInfo.EthicalToBreed(alleleA, alleleB));
@@ -515,7 +515,7 @@ public class GeneticsTests
         {
             AlleleBasic alleleA = geneInfo.GetEthicalAllele();
             AlleleBasic alleleB = geneInfo.GetEthicalAllele();
-            if (alleleA.Representation == 'h' || alleleB.Representation == 'h')
+            if (OneIs(alleleA, alleleB, 'h'))
                 Assert.IsTrue(geneInfo.EthicalToBreed(alleleA, alleleB));
             else
                 Assert.IsFalse(geneInfo.EthicalToBreed(alleleA, alleleB));
@@ -751,7 +751,7 @@ public class GeneticsTests
             AlleleBasic alleleA = geneInfo.GetAnyAllele();
             AlleleBasic alleleB = geneInfo.GetAnyAllele();
 
-            if (alleleA.Representation == 'n' || alleleB.Representation == 'n')
+            if (OneIs(alleleA, alleleB, 'n'))
                 Assert.AreEqual("Non-Reactive", geneInfo.Phenotype(alleleA, alleleB));
             else
                 Assert.AreEqual("Reactive", geneInfo.Phenotype(alleleA, alleleB));
@@ -769,7 +769,7 @@ public class GeneticsTests
             AlleleBasic alleleA = geneInfo.GetAnyAllele();
             AlleleBasic alleleB = geneInfo.GetAnyAllele();
 
-            if (alleleA.Representation == 'n' || alleleB.Representation == 'n')
+            if (OneIs(alleleA, alleleB, 'n'))
             {
                 Assert.IsTrue(geneInfo.EthicalPhenotype(alleleA, alleleB));
                 Assert.IsTrue(geneInfo.EthicalToBreed(alleleA, alleleB));
@@ -868,15 +868,425 @@ public class GeneticsTests
         {
             AlleleBasic alleleA = geneInfo.GetEthicalAllele();
             AlleleBasic alleleB = geneInfo.GetEthicalAllele();
-            if (alleleA.Representation == 'n' || alleleB.Representation == 'n')
+            if (OneIs(alleleA, alleleB, 'n'))
                 Assert.IsTrue(geneInfo.EthicalToBreed(alleleA, alleleB));
             else
                 Assert.IsFalse(geneInfo.EthicalToBreed(alleleA, alleleB));
         }
     }
 
-    // End testing genetics ---------------------------------------------------
+    // Icelandic Sheepdog GeneticInformation - constructor and properties, genotype, phenotype
+    [TestCategory("IcelandicSheepdogCoatColor")]
 
-    // Begin testing icelandic sheepdog ---------------------------------------
-    // End testing icelandic sheepdog -----------------------------------------
-}
+    [TestMethod]
+    public void IcelandicSheepdogCoatColorConstructorAndProperties()
+    {
+        GeneInformationAbstract geneInfo = new CoatColorIcelandicSheepdog();
+
+        Assert.IsFalse(geneInfo.IsCodominant);
+        Assert.IsFalse(geneInfo.IsIncompletelyDominant);
+    }
+
+    [TestMethod]
+    public void IcelandicSheepdogCoatColorPhenotype()
+    {
+        GeneInformationAbstract geneInfo = new CoatColorIcelandicSheepdog();
+        int times = 100;
+
+        for (int i = 0; i < times; i++)
+        {
+            AlleleBasic alleleA = geneInfo.GetAnyAllele();
+            AlleleBasic alleleB = geneInfo.GetAnyAllele();
+
+            Assert.IsTrue(alleleA.CompareTo(alleleB) != 0 || alleleA.Equals(alleleB));
+
+            if (OneIs(alleleA, alleleB, 'l'))
+                Assert.AreEqual("Black", geneInfo.Phenotype(alleleA, alleleB));
+            else if (OneIs(alleleA, alleleB, 't'))
+                Assert.AreEqual("Tri-color and White", geneInfo.Phenotype(alleleA, alleleB));
+            else if (OneIs(alleleA, alleleB, 'q'))
+                Assert.AreEqual("Brindle", geneInfo.Phenotype(alleleA, alleleB));
+            else if (OneIs(alleleA, alleleB, 'b'))
+                Assert.AreEqual("Black and White", geneInfo.Phenotype(alleleA, alleleB));
+            else if (OneIs(alleleA, alleleB, 'x'))
+                Assert.AreEqual("White With Black Polka Dots", geneInfo.Phenotype(alleleA, alleleB));
+            else if (OneIs(alleleA, alleleB, 'd'))
+                Assert.AreEqual("Chocolate and Tan", geneInfo.Phenotype(alleleA, alleleB));
+            else if (OneIs(alleleA, alleleB, 'o'))
+                Assert.AreEqual("Chocolate", geneInfo.Phenotype(alleleA, alleleB));
+            else if (OneIs(alleleA, alleleB, 'c'))
+                Assert.AreEqual("Chocolate and White", geneInfo.Phenotype(alleleA, alleleB));
+            else if (OneIs(alleleA, alleleB, 'p'))
+                Assert.AreEqual("White With Chocolate Polka Dots", geneInfo.Phenotype(alleleA, alleleB));
+            else if (OneIs(alleleA, alleleB, 'y'))
+                Assert.AreEqual("Grey", geneInfo.Phenotype(alleleA, alleleB));
+            else if (OneIs(alleleA, alleleB, 'g'))
+                Assert.AreEqual("Grey and White", geneInfo.Phenotype(alleleA, alleleB));
+            else if (OneIs(alleleA, alleleB, 'z'))
+                Assert.AreEqual("Blue Merle", geneInfo.Phenotype(alleleA, alleleB));
+            else if (OneIs(alleleA, alleleB, 'j'))
+                Assert.AreEqual("Blue", geneInfo.Phenotype(alleleA, alleleB));
+            else if (OneIs(alleleA, alleleB, 'u'))
+                Assert.AreEqual("Gold", geneInfo.Phenotype(alleleA, alleleB));
+            else if (OneIs(alleleA, alleleB, 'a'))
+                Assert.AreEqual("Gold and White", geneInfo.Phenotype(alleleA, alleleB));
+            else if (OneIs(alleleA, alleleB, 'v'))
+                Assert.AreEqual("Sable", geneInfo.Phenotype(alleleA, alleleB));
+            else if (OneIs(alleleA, alleleB, 's'))
+                Assert.AreEqual("Sable and White", geneInfo.Phenotype(alleleA, alleleB));
+            else if (OneIs(alleleA, alleleB, 'n'))
+                Assert.AreEqual("Tan and White", geneInfo.Phenotype(alleleA, alleleB));
+            else if (OneIs(alleleA, alleleB, 'f'))
+                Assert.AreEqual("Fawn and White", geneInfo.Phenotype(alleleA, alleleB));
+            else if (OneIs(alleleA, alleleB, 'k'))
+                Assert.AreEqual("Red Merle", geneInfo.Phenotype(alleleA, alleleB));
+            else if (OneIs(alleleA, alleleB, 'e'))
+                Assert.AreEqual("Red", geneInfo.Phenotype(alleleA, alleleB));
+            else if (OneIs(alleleA, alleleB, 'r'))
+                Assert.AreEqual("Red and White", geneInfo.Phenotype(alleleA, alleleB));
+            else if (OneIs(alleleA, alleleB, 'm'))
+                Assert.AreEqual("Cream", geneInfo.Phenotype(alleleA, alleleB));
+            else if (OneIs(alleleA, alleleB, 'w'))
+                Assert.AreEqual("Cream and White", geneInfo.Phenotype(alleleA, alleleB));
+            else if (OneIs(alleleA, alleleB, 'h'))
+                Assert.AreEqual("White", geneInfo.Phenotype(alleleA, alleleB));
+            else
+                Assert.AreEqual("Albino", geneInfo.Phenotype(alleleA, alleleB));
+        }
+    }
+
+    /// <summary>
+    /// Determines if one of the alleles matches the specified character.
+    /// </summary>
+    /// <param name="a">One of the alleles.</param>
+    /// <param name="b">One of the alleles.</param>
+    /// <param name="character">The character representation.</param>
+    /// <returns>True if a or b's representation is character, false otherwise.
+    /// </returns>
+    private bool OneIs(AlleleBasic a, AlleleBasic b, char character)
+    {
+        return a.Representation == character || b.Representation == character;
+    }
+
+    [TestMethod]
+    public void IcelandicSheepdogCoatColorGetAnyAllele()
+    {
+        GeneInformationAbstract geneInfo = new CoatColorIcelandicSheepdog();
+        int times = 200;
+
+        HashSet<char> chars = new();
+
+        for (int i = 0; i < times; i++)
+        {
+            AlleleBasic allele = geneInfo.GetAnyAllele();
+            chars.Add(allele.Representation);
+        }
+
+        if (chars.Count < 26)
+            throw new Exception("Not all alleles returned.");
+    }
+
+    [TestMethod]
+    public void IcelandicSheepdogCoatColorGetEthicalAllele()
+    {
+        GeneInformationAbstract geneInfo = new CoatColorIcelandicSheepdog();
+        int times = 200;
+
+        for (int i = 0; i < times; i++)
+        {
+            AlleleBasic allele = geneInfo.GetEthicalAllele();
+            Assert.IsFalse(geneInfo.IsUnethical(allele.Representation));
+        }
+    }
+
+    [TestMethod]
+    public void IcelandicSheepdogCoatColorIsUnethical()
+    {
+        GeneInformationAbstract geneInfo = new CoatColorIcelandicSheepdog();
+        int times = 200;
+
+        for (int i = 0; i < times; i++)
+        {
+            AlleleBasic allele = geneInfo.GetEthicalAllele();
+            Assert.IsFalse(geneInfo.IsUnethical(allele.Representation));
+        }
+    }
+
+    [TestMethod]
+    public void IcelandicSheepdogCoatColorIsStandard()
+    {
+        GeneInformationAbstract geneInfo = new CoatColorIcelandicSheepdog();
+        int times = 200;
+
+        for (int i = 0; i < times; i++)
+        {
+            AlleleBasic allele = geneInfo.GetEthicalAllele();
+            if(geneInfo.EthicalToBreed(allele, allele))
+                Assert.IsTrue(geneInfo.IsStandard(allele.Representation));
+        }
+    }
+
+    [TestMethod]
+    public void IcelandicSheepdogCoatColorIsNaturallyOcurring()
+    {
+        GeneInformationAbstract geneInfo = new CoatColorIcelandicSheepdog();
+        int times = 200;
+
+        for (int i = 0; i < times; i++)
+        {
+            AlleleBasic allele = geneInfo.GetEthicalAllele();
+            Assert.IsTrue(geneInfo.IsNaturallyOcurring(allele.Representation));
+        }
+    }
+
+    [TestMethod]
+    public void IcelandicSheepdogCoatColorEthicalToBreed()
+    {
+        GeneInformationAbstract geneInfo = new CoatColorIcelandicSheepdog();
+        int times = 200;
+
+        for (int i = 0; i < times; i++)
+        {
+            AlleleBasic alleleA = geneInfo.GetEthicalAllele();
+            AlleleBasic alleleB = geneInfo.GetEthicalAllele();
+            if (geneInfo.IsStandard(alleleA.Representation) &&
+                geneInfo.IsStandard(alleleB.Representation))
+                    Assert.IsTrue(geneInfo.EthicalToBreed(alleleA, alleleB));
+            else
+                Assert.IsFalse(geneInfo.EthicalToBreed(alleleA, alleleB));
+        }
+    }
+
+    [TestCategory("IcelandicSheepdogCoatLength")]
+
+    [TestMethod]
+    public void IcelandicSheepdogCoatLengthConstructorAndProperties()
+    {
+        GeneInformationAbstract geneInfo = new CoatLengthIcelandicSheepdog();
+
+        Assert.IsFalse(geneInfo.IsCodominant);
+        Assert.IsFalse(geneInfo.IsIncompletelyDominant);
+    }
+
+    [TestMethod]
+    public void IcelandicSheepdogCoatLengthIsUnethical()
+    {
+        GeneInformationAbstract geneInfo = new CoatLengthIcelandicSheepdog();
+        int times = 10;
+
+        for (int i = 0; i < times; i++)
+        {
+            AlleleBasic allele = geneInfo.GetEthicalAllele();
+            Assert.IsFalse(geneInfo.IsUnethical(allele.Representation));
+        }
+    }
+
+    [TestMethod]
+    public void IcelandicSheepdogCoatLengthIsStandard()
+    {
+        GeneInformationAbstract geneInfo = new CoatLengthIcelandicSheepdog();
+        int times = 10;
+
+        for (int i = 0; i < times; i++)
+        {
+            AlleleBasic allele = geneInfo.GetEthicalAllele();
+            if (geneInfo.EthicalToBreed(allele, allele))
+                Assert.IsTrue(geneInfo.IsStandard(allele.Representation));
+        }
+    }
+
+    [TestMethod]
+    public void IcelandicSheepdogCoatLengthIsNaturallyOcurring()
+    {
+        GeneInformationAbstract geneInfo = new CoatLengthIcelandicSheepdog();
+        int times = 10;
+
+        for (int i = 0; i < times; i++)
+        {
+            AlleleBasic allele = geneInfo.GetEthicalAllele();
+            Assert.IsTrue(geneInfo.IsNaturallyOcurring(allele.Representation));
+        }
+    }
+
+    [TestMethod]
+    public void IcelandicSheepdogCoatLengthPhenotype()
+    {
+        GeneInformationAbstract geneInfo = new CoatLengthIcelandicSheepdog();
+        int times = 10;
+
+        for (int i = 0; i < times; i++)
+        {
+            AlleleBasic alleleA = geneInfo.GetAnyAllele();
+            AlleleBasic alleleB = geneInfo.GetAnyAllele();
+
+            Assert.IsTrue(alleleA.CompareTo(alleleB) != 0 || alleleA.Equals(alleleB));
+
+            if (OneIs(alleleA, alleleB, 'l'))
+                Assert.AreEqual("Longhair", geneInfo.Phenotype(alleleA, alleleB));
+            else
+                Assert.AreEqual("Shorthair", geneInfo.Phenotype(alleleA, alleleB));
+        }
+    }
+
+    [TestMethod]
+    public void IcelandicSheepdogCoatLengthGetAnyAllele()
+    {
+        GeneInformationAbstract geneInfo = new CoatLengthIcelandicSheepdog();
+        int times = 10;
+
+        HashSet<char> chars = new();
+
+        for (int i = 0; i < times; i++)
+        {
+            AlleleBasic allele = geneInfo.GetAnyAllele();
+            chars.Add(allele.Representation);
+        }
+
+        if (chars.Count < 2)
+            throw new Exception("Not all alleles returned.");
+    }
+
+    [TestMethod]
+    public void IcelandicSheepdogCoatLengthGetEthicalAllele()
+    {
+        GeneInformationAbstract geneInfo = new CoatLengthIcelandicSheepdog();
+        int times = 200;
+
+        for (int i = 0; i < times; i++)
+        {
+            AlleleBasic allele = geneInfo.GetEthicalAllele();
+            Assert.IsFalse(geneInfo.IsUnethical(allele.Representation));
+        }
+    }
+
+    [TestMethod]
+    public void IcelandicSheepdogCoatLengthEthicalToBreed()
+    {
+        GeneInformationAbstract geneInfo = new CoatLengthIcelandicSheepdog();
+        int times = 200;
+
+        for (int i = 0; i < times; i++)
+        {
+            AlleleBasic alleleA = geneInfo.GetEthicalAllele();
+            AlleleBasic alleleB = geneInfo.GetEthicalAllele();
+            if (geneInfo.IsStandard(alleleA.Representation) &&
+                geneInfo.IsStandard(alleleB.Representation))
+                Assert.IsTrue(geneInfo.EthicalToBreed(alleleA, alleleB));
+            else
+                Assert.IsFalse(geneInfo.EthicalToBreed(alleleA, alleleB));
+        }
+    }
+
+    [TestCategory("IcelandicSheepdogMarkings")]
+
+    [TestMethod]
+    public void IcelandicSheepdogMarkingsConstructorAndProperties()
+    {
+        GeneInformationAbstract geneInfo = new MarkingsIcelandicSheepdog();
+
+        Assert.IsTrue(geneInfo.IsCodominant);
+        Assert.IsFalse(geneInfo.IsIncompletelyDominant);
+    }
+
+    [TestMethod]
+    public void IcelandicSheepdogMarkingsIsUnethical()
+    {
+        GeneInformationAbstract geneInfo = new MarkingsIcelandicSheepdog();
+        int times = 100;
+
+        for (int i = 0; i < times; i++)
+        {
+            AlleleBasic allele = geneInfo.GetEthicalAllele();
+            Assert.IsFalse(geneInfo.IsUnethical(allele.Representation));
+        }
+    }
+
+    [TestMethod]
+    public void IcelandicSheepdogMarkingsIsStandard()
+    {
+        GeneInformationAbstract geneInfo = new MarkingsIcelandicSheepdog();
+        int times = 100;
+
+        for (int i = 0; i < times; i++)
+        {
+            AlleleBasic allele = geneInfo.GetEthicalAllele();
+            if (geneInfo.EthicalToBreed(allele, allele))
+                Assert.IsTrue(geneInfo.IsStandard(allele.Representation));
+        }
+    }
+
+    [TestMethod]
+    public void IcelandicSheepdogMarkingsIsNaturallyOcurring()
+    {
+        GeneInformationAbstract geneInfo = new MarkingsIcelandicSheepdog();
+        int times = 100;
+
+        for (int i = 0; i < times; i++)
+        {
+            AlleleBasic allele = geneInfo.GetEthicalAllele();
+            Assert.IsTrue(geneInfo.IsNaturallyOcurring(allele.Representation));
+        }
+    }
+
+    [TestMethod]
+    public void IcelandicSheepdogMarkingsGetAnyAllele()
+    {
+        GeneInformationAbstract geneInfo = new MarkingsIcelandicSheepdog();
+        int times = 100;
+
+        HashSet<char> chars = new();
+
+        for (int i = 0; i < times; i++)
+        {
+            AlleleBasic allele = geneInfo.GetAnyAllele();
+            chars.Add(allele.Representation);
+        }
+
+        if (chars.Count < 13)
+            throw new Exception("Not all alleles returned.");
+    }
+
+    [TestMethod]
+    public void IcelandicSheepdogMarkingsGetEthicalAllele()
+    {
+        GeneInformationAbstract geneInfo = new MarkingsIcelandicSheepdog();
+        int times = 100;
+
+        for (int i = 0; i < times; i++)
+        {
+            AlleleBasic allele = geneInfo.GetEthicalAllele();
+            Assert.IsFalse(geneInfo.IsUnethical(allele.Representation));
+        }
+    }
+
+    [TestMethod]
+    public void IcelandicSheepdogMarkingsEthicalToBreed()
+    {
+        GeneInformationAbstract geneInfo = new MarkingsIcelandicSheepdog();
+        int times = 100;
+
+        for (int i = 0; i < times; i++)
+        {
+            AlleleBasic alleleA = geneInfo.GetEthicalAllele();
+            AlleleBasic alleleB = geneInfo.GetEthicalAllele();
+            if (geneInfo.IsStandard(alleleA.Representation) &&
+                geneInfo.IsStandard(alleleB.Representation))
+                Assert.IsTrue(geneInfo.EthicalToBreed(alleleA, alleleB));
+            else
+                Assert.IsFalse(geneInfo.EthicalToBreed(alleleA, alleleB));
+        }
+    }
+
+    // Icelandic Sheepdog GeneticOptions - constructor and properties, genotype, phenotype
+    [TestCategory("GeneticOptions")]
+
+    [TestMethod]
+    public void IcelandicSheepdogGeneticOptions()
+    {
+        GeneticOptionsIcelandicSheepdog geneticOptions = new();
+        foreach (GeneName name in GeneNameIcelandicSheepdog.geneNames)
+            Assert.IsFalse(geneticOptions.GetGene(name) is null);
+    }
+
+        // End testing genetics ---------------------------------------------------
+    }

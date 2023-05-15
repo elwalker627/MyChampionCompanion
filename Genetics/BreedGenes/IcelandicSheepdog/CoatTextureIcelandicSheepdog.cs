@@ -1,7 +1,7 @@
 ﻿using Genetics;
 namespace IcelandicSheepdog;
 
-public class CoatTexture : GeneInformationAbstract
+public class CoatTextureIcelandicSheepdog : GeneInformationAbstract
 {
     public override bool EthicalPhenotype(AlleleBasic a, AlleleBasic b)
     {

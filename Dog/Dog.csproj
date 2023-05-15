@@ -8,5 +8,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Genetics\Genetics.csproj" />
+    <ProjectReference Include="..\Competitions\Competitions.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="DogBreeds\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DogBreeds\" />
   </ItemGroup>
 </Project>

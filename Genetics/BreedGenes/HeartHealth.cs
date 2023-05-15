@@ -1,7 +1,7 @@
 ﻿using Genetics;
-namespace IcelandicSheepdog;
+namespace Vocabulary;
 
-public class HeartHealthIcelandicSheepdog : GeneInformationAbstract
+public class HeartHealth : GeneInformationAbstract
 {
     public override bool EthicalPhenotype(AlleleBasic a, AlleleBasic b)
     {

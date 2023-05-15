@@ -9,26 +9,38 @@ public class AlleleSet
 	public AlleleBasic alleleB { get; private set; }
     public String Genotype { get; private set; }
     public String Phenotype { get; private set; }
-    private GeneInformationAbstract geneInfo;
+    public bool EthicalToBreed { get; private set; }
+    public Func<AlleleBasic, AlleleBasic, String> PhenotypeFunc { get; private set; }
+    public Func<AlleleBasic, AlleleBasic, bool> EthicalToBreedFunc { get; private set; }
 
-	/// <summary>
-	/// Creates an allele set with the given alleles.
-	/// </summary>
-	/// <param name="alleleA">One of the alleles for the set.</param>
-	/// <param name="alleleB">One of the alleles for the set.</param>
-	public AlleleSet(AlleleBasic alleleA, AlleleBasic alleleB,
-    GeneInformationAbstract geneInfo)
+    /// <summary>
+    /// Creates an allele set with the given alleles.
+    /// </summary>
+    /// <param name="alleleA">One of the alleles for the set.</param>
+    /// <param name="alleleB">One of the alleles for the set.</param>
+    public AlleleSet(AlleleBasic alleleA, AlleleBasic alleleB,
+    Func<AlleleBasic, AlleleBasic, String> phenotypeFunc,
+    Func<AlleleBasic, AlleleBasic, bool> ethicalToBreedFunc)
 	{
 		this.alleleA = alleleA;
 		this.alleleB = alleleB;
-        this.geneInfo = geneInfo;
+        this.PhenotypeFunc = phenotypeFunc;
         this.Genotype = GetGenotype();
-        this.Phenotype = GetPhenotype();
+        this.Phenotype = PhenotypeFunc(alleleA, alleleB);
+        this.EthicalToBreedFunc = ethicalToBreedFunc;
+        this.EthicalToBreed = ethicalToBreedFunc(alleleA, alleleB);
     }
 
-    public string GetPhenotype()
+    /// <summary>
+    /// Gets a random allele from this set.
+    /// </summary>
+    /// <returns>A random allele from this set.</returns>
+    public AlleleBasic GetRandomAllele()
     {
-        return this.geneInfo.Phenotype(alleleA, alleleB);
+        if (new Random().Next() % 2 == 0)
+            return this.alleleA;
+        else
+            return this.alleleB;
     }
 
     /// <summary>
