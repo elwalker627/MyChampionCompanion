@@ -4,13 +4,13 @@ namespace Genetics;
 
 public abstract class GeneticsOptionsAbstract
 {
-	private Dictionary<GeneName, GeneInformationAbstract> genes;
+	private Dictionary<String, GeneInformationAbstract> genes;
 
-	public GeneticsOptionsAbstract()
+	public GeneticsOptionsAbstract(GeneNameListAbstract geneNameList)
 	{
 		genes = new();
-        GenerateBaseGenes();
-        GenerateGenes();
+        GenerateBaseGenes(geneNameList);
+        GenerateGenes(geneNameList);
     }
 
     /// <summary>
@@ -18,7 +18,7 @@ public abstract class GeneticsOptionsAbstract
     /// </summary>
     /// <param name="name">The name of the gene.</param>
     /// <returns>The gene associated with the gene name.</returns>
-    public GeneInformationAbstract GetGene(GeneName name)
+    public GeneInformationAbstract GetGene(String name)
     {
         return genes[name];
     }
@@ -29,7 +29,7 @@ public abstract class GeneticsOptionsAbstract
     /// </summary>
     /// <param name="geneName">The name of the gene.</param>
     /// <param name="gene">The gene.</param>
-    protected void AddGene(GeneName geneName, GeneInformationAbstract gene)
+    protected void AddGene(String geneName, GeneInformationAbstract gene)
     {
         if (this.genes.TryGetValue(geneName, out _))
             this.genes.Remove(geneName);
@@ -40,32 +40,32 @@ public abstract class GeneticsOptionsAbstract
     /// <summary>
     /// Generates the base genes that every dog has.
     /// </summary>
-    private void GenerateBaseGenes()
+    private void GenerateBaseGenes(GeneNameListAbstract geneNameList)
     {
-        this.AddGene(GeneName.Hips, new Hips());
-        this.AddGene(GeneName.AffectionLevel, new AffectionLevel());
-        this.AddGene(GeneName.Playfulness, new Playfulness());
-        this.AddGene(GeneName.Friendliness, new Friendliness());
-        this.AddGene(GeneName.Adaptability, new Adaptability());
-        this.AddGene(GeneName.Reactivity, new Reactivity());
-        this.AddGene(GeneName.Curiosity, new Curiosity());
-        this.AddGene(GeneName.Confidence, new Confidence());
-        this.AddGene(GeneName.AffinityForHerding, new AffinityForHerding());
-        this.AddGene(GeneName.HeartHealth, new HeartHealth());
-        this.AddGene(GeneName.AffinityForFastCAT, new AffinityForFastCAT());
-        this.AddGene(GeneName.AffinityForSwimmingAndDockDiving, new AffinityForSwimmingAndDockDiving());
-        this.AddGene(GeneName.AffinityForAgility, new AffinityForAgility());
-        this.AddGene(GeneName.AffinityForProtection, new AffinityForProtection());
-        this.AddGene(GeneName.AffinityForFlyball, new AffinityForFlyball());
-        this.AddGene(GeneName.AffinityForBarnhunt, new AffinityForBarnhunt());
-        this.AddGene(GeneName.AffinityForScentwork, new AffinityForScentwork());
-        this.AddGene(GeneName.AffinityForDisc, new AffinityForDisc());
-        this.AddGene(GeneName.EyeHealth, new EyeHealth());
+        this.AddGene(geneNameList.AffectionLevel, new AffectionLevel());
+        this.AddGene(geneNameList.Playfulness, new Playfulness());
+        this.AddGene(geneNameList.Friendliness, new Friendliness());
+        this.AddGene(geneNameList.Adaptability, new Adaptability());
+        this.AddGene(geneNameList.Reactivity, new Reactivity());
+        this.AddGene(geneNameList.Curiosity, new Curiosity());
+        this.AddGene(geneNameList.Confidence, new Confidence());
+        this.AddGene(geneNameList.AffinityForHerding, new AffinityForHerding());
+        this.AddGene(geneNameList.HeartHealth, new HeartHealth());
+        this.AddGene(geneNameList.AffinityForFastCAT, new AffinityForFastCAT());
+        this.AddGene(geneNameList.AffinityForSwimmingAndDockDiving, new AffinityForSwimmingAndDockDiving());
+        this.AddGene(geneNameList.AffinityForAgility, new AffinityForAgility());
+        this.AddGene(geneNameList.AffinityForProtection, new AffinityForProtection());
+        this.AddGene(geneNameList.AffinityForFlyball, new AffinityForFlyball());
+        this.AddGene(geneNameList.AffinityForBarnhunt, new AffinityForBarnhunt());
+        this.AddGene(geneNameList.AffinityForScentwork, new AffinityForScentwork());
+        this.AddGene(geneNameList.AffinityForDisc, new AffinityForDisc());
+        this.AddGene(geneNameList.EyeHealth, new EyeHealth());
     }
 
     /// <summary>
     /// Generates the genes for these genetics. Only the genes specific to this
     /// breed need to be added.
     /// </summary>
-    protected abstract void GenerateGenes();
+    /// <param name="geneNameList">The list of gene names.</param>
+    protected abstract void GenerateGenes(GeneNameListAbstract geneNameList);
 }

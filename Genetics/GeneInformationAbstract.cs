@@ -9,7 +9,7 @@ public abstract class GeneInformationAbstract
     /// </summary>
     protected Dictionary<int, AlleleBasic> alleles;
 
-    public GeneName Name { get; protected set; }
+    public String Name { get; protected set; }
     protected int Recessive { get { return 0; } }
     protected int Dominant { get { return 100; } }
 

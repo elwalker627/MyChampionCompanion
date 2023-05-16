@@ -50,7 +50,7 @@ namespace IcelandicSheepdog;
 
     public override bool IsNaturallyOcurring(char character)
     {
-        return !IsUnethical(character);
+        return !(character == 'u' || character == 's' || character == 'l');
     }
 }
 

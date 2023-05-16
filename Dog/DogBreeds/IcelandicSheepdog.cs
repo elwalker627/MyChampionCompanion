@@ -1,4 +1,5 @@
 ﻿using Genetics;
+using Vocabulary;
 using IcelandicSheepdog;
 namespace Dog
 {
@@ -6,17 +7,23 @@ namespace Dog
     {
         public IcelandicSheepdog(bool isEthical, GeneticsOptionsAbstract options) : base()
         {
-            this.genetics = new DogGeneticsIcelandicSheepdog(options, isEthical);
+            GeneNameListAbstract geneNameList = new GeneNameListIcelandicSheepdog();
+
             this.EthicalToBreed = IsEthicalToBreed(this.genetics,
-                GeneNameIcelandicSheepdog.geneNames);
+                geneNameList.GeneNames);
         }
 
-        public IcelandicSheepdog(DogGeneticsIcelandicSheepdog parentA,
-            DogGeneticsIcelandicSheepdog parentB, String name) : base(name)
+        public IcelandicSheepdog(IcelandicSheepdog mother,
+            IcelandicSheepdog father, String name) : base(name)
         {
-            this.genetics = new DogGeneticsIcelandicSheepdog(parentA, parentB);
+            this.pedigree = new Pedigree(mother.pedigree, father.pedigree, this);
+
+            GeneNameListAbstract geneNameList = new GeneNameListIcelandicSheepdog();
+            this.genetics = new DogGeneticsIcelandicSheepdog((DogGeneticsIcelandicSheepdog)mother.genetics,
+                (DogGeneticsIcelandicSheepdog)father.genetics, geneNameList);
+
             this.EthicalToBreed = IsEthicalToBreed(this.genetics,
-                GeneNameIcelandicSheepdog.geneNames);
+                geneNameList.GeneNames);
         }
     }
 }

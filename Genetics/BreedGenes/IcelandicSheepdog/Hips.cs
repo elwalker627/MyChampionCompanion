@@ -1,5 +1,5 @@
 ﻿using Genetics;
-namespace GeneralGenes;
+namespace IcelandicSheepdog;
 
 public class Hips : GeneInformationAbstract
 {

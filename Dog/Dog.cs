@@ -5,10 +5,11 @@ namespace Dog;
 
 public abstract class Dog
 {
-	protected DogGeneticsAbstract genetics;
+	public DogGeneticsAbstract genetics;
 	protected Dictionary<String, Title> titles;
 	public String Name { get; set; }
     public bool EthicalToBreed { get; protected set; }
+    public BasicPedigree pedigree { get; protected set; }
 
     public Dog(String name)
     {
@@ -25,12 +26,12 @@ public abstract class Dog
     /// <summary>
     /// Determines if this dog is ethical to breed.
     /// </summary>
-    /// <param name="genetics"></param>
-    /// <param name="geneNames"></param>
+    /// <param name="genetics">The genetics of the dog.</param>
+    /// <param name="geneNames">The names of the genes.</param>
     /// <returns></returns>
-    protected bool IsEthicalToBreed(DogGeneticsAbstract genetics, IEnumerable<GeneName> geneNames)
+    protected bool IsEthicalToBreed(DogGeneticsAbstract genetics, IEnumerable<String> geneNames)
     {
-        foreach (GeneName geneName in geneNames)
+        foreach (String geneName in geneNames)
             if (!genetics.GetAlleleSet(geneName).EthicalToBreed)
                 return false;
 

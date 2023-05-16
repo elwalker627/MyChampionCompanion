@@ -1,26 +1,39 @@
 ﻿using Genetics;
-using GeneralGenes;
+using Vocabulary;
 namespace IcelandicSheepdog;
 
 public class GeneticOptionsIcelandicSheepdog : GeneticsOptionsAbstract
 {
-    protected override void GenerateGenes()
+    public GeneticOptionsIcelandicSheepdog(GeneNameListAbstract geneNameList) : base(geneNameList)
     {
-        this.AddGene(GeneNameIcelandicSheepdog.CoatColor, new CoatColorIcelandicSheepdog());
-        this.AddGene(GeneNameIcelandicSheepdog.CoatLength, new CoatLengthIcelandicSheepdog());
-        this.AddGene(GeneNameIcelandicSheepdog.CoatTexture, new CoatTextureIcelandicSheepdog());
-        this.AddGene(GeneNameIcelandicSheepdog.Shedding, new SheddingIcelandicSheepdog());
-        this.AddGene(GeneNameIcelandicSheepdog.Markings, new MarkingsIcelandicSheepdog());
-        this.AddGene(GeneNameIcelandicSheepdog.Friendliness, new FriendlinessIcelandicSheepdog());
-        this.AddGene(GeneNameIcelandicSheepdog.Adaptability, new AdaptabilityIcelandicSheepdog());
-        this.AddGene(GeneNameIcelandicSheepdog.MentalStimulationNeeds, new MentalStimulationNeedsIcelandicSheepdog());
-        this.AddGene(GeneNameIcelandicSheepdog.EnergyLevel, new EnergyLevelIcelandicSheepdog());
-        this.AddGene(GeneNameIcelandicSheepdog.Barking, new BarkingLevelIcelandicSheepdog());
-        this.AddGene(GeneNameIcelandicSheepdog.Confidence, new ConfidenceIcelandicSheepdog());
-        this.AddGene(GeneNameIcelandicSheepdog.EyeColor, new EyeColorIcelandicSheedog());
-        this.AddGene(GeneNameIcelandicSheepdog.FrontDewClaws, new FrontDewClawsIcelandicSheepdog());
-        this.AddGene(GeneNameIcelandicSheepdog.RearDewClaws, new RearDewClawsIcelandicSheepdog());
-        this.AddGene(GeneNameIcelandicSheepdog.AffinityForHerding, new AffinityForHerdingIcelandicSheepdog());
+    }
+
+    protected override void GenerateGenes(GeneNameListAbstract geneNameList)
+    {
+        if (!(geneNameList is GeneNameListIcelandicSheepdog))
+            throw new ArgumentException("Only an icelandic sheepdog name list " +
+                "can be passed to an icelandic sheepdog.");
+
+        GeneNameListIcelandicSheepdog icelandicSheepdogGeneNameList =
+            (GeneNameListIcelandicSheepdog)geneNameList;
+
+        this.AddGene(icelandicSheepdogGeneNameList.Hips, new Hips());
+        this.AddGene(icelandicSheepdogGeneNameList.CoatColor, new CoatColorIcelandicSheepdog());
+        this.AddGene(icelandicSheepdogGeneNameList.CoatLength, new CoatLengthIcelandicSheepdog());
+        this.AddGene(icelandicSheepdogGeneNameList.CoatTexture, new CoatTextureIcelandicSheepdog());
+        this.AddGene(icelandicSheepdogGeneNameList.Shedding, new SheddingIcelandicSheepdog());
+        this.AddGene(icelandicSheepdogGeneNameList.Markings, new MarkingsIcelandicSheepdog());
+        this.AddGene(icelandicSheepdogGeneNameList.Friendliness, new FriendlinessIcelandicSheepdog());
+        this.AddGene(icelandicSheepdogGeneNameList.Adaptability, new AdaptabilityIcelandicSheepdog());
+        this.AddGene(icelandicSheepdogGeneNameList.MentalStimulationNeeds, new MentalStimulationNeedsIcelandicSheepdog());
+        this.AddGene(icelandicSheepdogGeneNameList.EnergyLevel, new EnergyLevelIcelandicSheepdog());
+        this.AddGene(icelandicSheepdogGeneNameList.Barking, new BarkingLevelIcelandicSheepdog());
+        this.AddGene(icelandicSheepdogGeneNameList.Confidence, new ConfidenceIcelandicSheepdog());
+        this.AddGene(icelandicSheepdogGeneNameList.EyeColor, new EyeColorIcelandicSheedog());
+        this.AddGene(icelandicSheepdogGeneNameList.FrontDewClaws, new FrontDewClawsIcelandicSheepdog());
+        this.AddGene(icelandicSheepdogGeneNameList.RearDewClaws, new RearDewClawsIcelandicSheepdog());
+        this.AddGene(icelandicSheepdogGeneNameList.AffinityForHerding, new AffinityForHerdingIcelandicSheepdog());
+        this.AddGene(icelandicSheepdogGeneNameList.Trainability, new TrainabilityIcelandicSheepdog());
     }
 }
 

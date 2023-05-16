@@ -2,6 +2,9 @@
 using Genetics;
 using GeneralGenes;
 using IcelandicSheepdog;
+using PunnettSquareSpace;
+using System.Diagnostics;
+using System.Drawing;
 
 namespace Testing;
 
@@ -105,7 +108,7 @@ public class GeneticsTests
         GeneInformationAbstract genes = new GeneInformationTesting();
         AlleleBasic a = genes.GetAnyAllele();
         AlleleBasic b = genes.GetAnyAllele();
-        AlleleSet set = new(a, b, genes);
+        AlleleSet set = new(a, b, genes.Phenotype, genes.EthicalToBreed);
 
         Assert.AreEqual(a, set.alleleA);
         Assert.AreEqual(b, set.alleleB);
@@ -122,7 +125,7 @@ public class GeneticsTests
             // Get alleles
             AlleleBasic a = genes.GetAnyAllele();
             AlleleBasic b = genes.GetAnyAllele();
-            AlleleSet set = new(a, b, genes);
+            AlleleSet set = new(a, b, genes.Phenotype, genes.EthicalToBreed);
 
             // Find which alleles are present
             bool hasStripes = OneIs(a, b, 's');
@@ -177,7 +180,7 @@ public class GeneticsTests
             // Get alleles
             AlleleBasic a = genes.GetAnyAllele();
             AlleleBasic b = genes.GetAnyAllele();
-            AlleleSet set = new(a, b, genes);
+            AlleleSet set = new(a, b, genes.Phenotype, genes.EthicalToBreed);
 
             // Find which alleles are present
             bool hasStripes = OneIs(a, b, 's');
@@ -1283,10 +1286,167 @@ public class GeneticsTests
     [TestMethod]
     public void IcelandicSheepdogGeneticOptions()
     {
-        GeneticOptionsIcelandicSheepdog geneticOptions = new();
-        foreach (GeneName name in GeneNameIcelandicSheepdog.geneNames)
+        GeneNameListIcelandicSheepdog geneNames = new();
+        GeneticOptionsIcelandicSheepdog geneticOptions = new(geneNames);
+        foreach (String name in geneNames.GeneNames)
             Assert.IsFalse(geneticOptions.GetGene(name) is null);
     }
 
-        // End testing genetics ---------------------------------------------------
+    // Punnet square, construction and tostring, getcoordinates desirable,
+    // getcoordoinates undesirable
+    [TestCategory("PunnetSquare")]
+
+    [TestMethod]
+    public void PunnettSquareConstructorAndToString()
+    {
+        GeneNameListIcelandicSheepdog geneNameList = new GeneNameListIcelandicSheepdog();
+        GeneticOptionsIcelandicSheepdog options = new(geneNameList);
+        HashSet<String> genes = new();
+        genes.Add(geneNameList.CoatColor);
+
+        PunnettSquare square = new(new DogGeneticsIcelandicSheepdog(options,
+            true, geneNameList), new DogGeneticsIcelandicSheepdog(options, true,
+            geneNameList), genes);
+
+        Assert.AreEqual("", square.Square[0, 0]);
+
+        for (int i = 1; i <= 2; i++)
+        {
+            Assert.AreEqual(1, square.Square[0, i].Count());
+            Assert.AreEqual(1, square.Square[i, 0].Count());
+        }
+
+        for (int i = 1; i <= 2; i++)
+            for (int j = 1; j <= 2; j++)
+                Assert.AreEqual(2, square.Square[i, j].Count());
+
+        Debug.WriteLine(square.ToString());
     }
+
+    [TestMethod]
+    public void PunnettSquareConstructorAndToStringComplexA()
+    {
+        GeneNameListIcelandicSheepdog geneNameList = new GeneNameListIcelandicSheepdog();
+        GeneticOptionsIcelandicSheepdog options = new(geneNameList);
+        HashSet<String> genes = new();
+        genes.Add(geneNameList.CoatColor);
+        genes.Add(geneNameList.Hips);
+        genes.Add(geneNameList.Markings);
+
+        PunnettSquare square = new(new DogGeneticsIcelandicSheepdog(options,
+            true, geneNameList), new DogGeneticsIcelandicSheepdog(options, true,
+            geneNameList), genes);
+
+        Assert.AreEqual("", square.Square[0, 0]);
+
+        for (int i = 1; i <= 6; i++)
+        {
+            Assert.AreEqual(3, square.Square[0, i].Count());
+            Assert.AreEqual(3, square.Square[i, 0].Count());
+        }
+
+        for (int i = 1; i <= 6; i++)
+            for (int j = 1; j <= 6; j++)
+                Assert.AreEqual(6, square.Square[i, j].Count());
+
+        Debug.WriteLine(square.ToString());
+    }
+
+    [TestMethod]
+    public void PunnettSquareConstructorAndToStringComplexB()
+    {
+        GeneNameListIcelandicSheepdog geneNameList = new GeneNameListIcelandicSheepdog();
+        GeneticOptionsIcelandicSheepdog options = new(geneNameList);
+        HashSet<String> genes = new();
+        genes.Add(geneNameList.CoatColor);
+        genes.Add(geneNameList.Hips);
+        genes.Add(geneNameList.Markings);
+
+        PunnettSquare square = new(new DogGeneticsIcelandicSheepdog(options,
+            true, geneNameList), new DogGeneticsIcelandicSheepdog(options, true,
+            geneNameList), genes);
+
+        Assert.AreEqual("", square.Square[0, 0]);
+
+        for (int i = 1; i <= 6; i++)
+        {
+            Assert.AreEqual(3, square.Square[0, i].Count());
+            Assert.AreEqual(3, square.Square[i, 0].Count());
+        }
+
+        for (int i = 1; i <= 6; i++)
+            for (int j = 1; j <= 6; j++)
+                Assert.AreEqual(6, square.Square[i, j].Count());
+
+        Debug.WriteLine(square.ToString());
+    }
+
+    [TestMethod]
+    public void PunnettSquareConstructorAndToStringComplexC()
+    {
+        GeneNameListIcelandicSheepdog geneNameList = new GeneNameListIcelandicSheepdog();
+        GeneticOptionsIcelandicSheepdog options = new(geneNameList);
+        HashSet<String> genes = new();
+        genes.Add(geneNameList.CoatColor);
+        genes.Add(geneNameList.Hips);
+        genes.Add(geneNameList.Markings);
+
+        PunnettSquare square = new(new DogGeneticsIcelandicSheepdog(options,
+            true, geneNameList), new DogGeneticsIcelandicSheepdog(options, true,
+            geneNameList), genes);
+
+        Assert.AreEqual("", square.Square[0, 0]);
+
+        for (int i = 1; i <= 6; i++)
+        {
+            Assert.AreEqual(3, square.Square[0, i].Count());
+            Assert.AreEqual(3, square.Square[i, 0].Count());
+        }
+
+        for (int i = 1; i <= 6; i++)
+            for (int j = 1; j <= 6; j++)
+                Assert.AreEqual(6, square.Square[i, j].Count());
+
+        Debug.WriteLine(square.ToString());
+    }
+
+    [TestMethod]
+    public void PunnettSquareGetPoints()
+    {
+        GeneNameListIcelandicSheepdog geneNameList = new GeneNameListIcelandicSheepdog();
+        GeneticOptionsIcelandicSheepdog options = new(geneNameList);
+        HashSet<String> genes = new();
+        genes.Add(geneNameList.CoatColor);
+
+        PunnettSquare square = new(new DogGeneticsIcelandicSheepdog(options,
+            true, geneNameList), new DogGeneticsIcelandicSheepdog(options, true,
+            geneNameList), genes);
+
+        Debug.WriteLine(square.ToString());
+
+        String str = "BT";
+        IEnumerable<Point> points = square.GetPointsOfAlleleSet(str);
+    }
+
+    [TestMethod]
+    public void PunnettSquareGetPointsComplex()
+    {
+        GeneNameListIcelandicSheepdog geneNameList = new GeneNameListIcelandicSheepdog();
+        GeneticOptionsIcelandicSheepdog options = new(geneNameList);
+        HashSet<String> genes = new();
+        genes.Add(geneNameList.CoatColor);
+        genes.Add(geneNameList.Hips);
+        genes.Add(geneNameList.Markings);
+
+        PunnettSquare square = new(new DogGeneticsIcelandicSheepdog(options,
+            false, geneNameList), new DogGeneticsIcelandicSheepdog(options, false,
+            geneNameList), genes);
+
+        Debug.WriteLine(square.ToString());
+
+        String str = "BT";
+        IEnumerable<Point> points = square.GetPointsOfAlleleSet(str);
+    }
+
+    // End testing genetics ---------------------------------------------------
+}

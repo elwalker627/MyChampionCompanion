@@ -4,24 +4,43 @@ namespace Genetics;
 
 public abstract class DogGeneticsAbstract
 {
-    private Dictionary<GeneName, AlleleSet> alleleSets;
+    private Dictionary<String, AlleleSet> alleleSets;
+    public GeneNameListAbstract geneNames;
 
+    /// <summary>
+    /// Creates a dog that is fully able to breed (either ethically or
+    /// non-ethically).
+    /// </summary>
+    /// <param name="options">The genetic options from which to choose.</param>
+    /// <param name="isEthical">Whether or not the dog needs to be ethical to
+    /// breed.</param>
+    /// <param name="geneNameList">The list of gene names for this breed.
+    /// </param>
     public DogGeneticsAbstract(GeneticsOptionsAbstract options, bool isEthical,
-        IEnumerable<GeneName> geneNames)
+        GeneNameListAbstract geneNameList)
 	{
         this.alleleSets = new();
+        this.geneNames = geneNameList;
 
         if (isEthical)
-            EthicalDog(options, geneNames);
+            EthicalDog(options, geneNames.GeneNames);
         else
-            UnethicalDog(options, geneNames);
+            UnethicalDog(options, geneNames.GeneNames);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="parentA"></param>
+    /// <param name="parentB"></param>
+    /// <param name="geneNameList"></param>
     public DogGeneticsAbstract(DogGeneticsAbstract parentA, DogGeneticsAbstract
-        parentB, IEnumerable<GeneName> geneNames)
+        parentB, GeneNameListAbstract geneNameList)
     {
         this.alleleSets = new();
-        foreach (GeneName geneName in geneNames)
+        this.geneNames = geneNameList;
+
+        foreach (String geneName in geneNames.GeneNames)
         {
             this.alleleSets.Add(geneName,
                 new(parentA.alleleSets[geneName].GetRandomAllele(),
@@ -36,7 +55,7 @@ public abstract class DogGeneticsAbstract
     /// </summary>
     /// <param name="geneName">The name of the gene.</param>
     /// <returns>The gene associated with gene name.</returns>
-    public AlleleSet GetAlleleSet(GeneName geneName)
+    public AlleleSet GetAlleleSet(String geneName)
     {
         return alleleSets[geneName];
     }
@@ -46,9 +65,9 @@ public abstract class DogGeneticsAbstract
     /// </summary>
     /// <param name="options">The genetic options.</param>
     protected void EthicalDog(GeneticsOptionsAbstract options,
-        IEnumerable<GeneName> geneNames)
+        IEnumerable<String> geneNames)
     {
-        foreach (GeneName geneName in geneNames)
+        foreach (String geneName in geneNames)
             this.AddGene(geneName, options, true);
     }
 
@@ -57,9 +76,9 @@ public abstract class DogGeneticsAbstract
     /// </summary>
     /// <param name="options">The genetic options.</param>
     protected void UnethicalDog(GeneticsOptionsAbstract options,
-        IEnumerable<GeneName> geneNames)
+        IEnumerable<String> geneNames)
     {
-        foreach (GeneName geneName in geneNames)
+        foreach (String geneName in geneNames)
             this.AddGene(geneName, options, false);
     }
 
@@ -70,7 +89,7 @@ public abstract class DogGeneticsAbstract
     /// <param name="gene">The gene being added.</param>
     /// <param name="ethical">Whether or not the allele set to add needs to be
     /// ethical.</param>
-    protected void AddGene(GeneName geneName, GeneticsOptionsAbstract options, bool ethical)
+    protected void AddGene(String geneName, GeneticsOptionsAbstract options, bool ethical)
     {
         GeneInformationAbstract gene = options.GetGene(geneName);
         if (ethical)
