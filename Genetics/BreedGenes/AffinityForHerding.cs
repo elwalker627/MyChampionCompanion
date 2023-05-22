@@ -1,8 +1,11 @@
 ﻿using Genetics;
 namespace GeneralGenes;
 
-	public class AffinityForHerding : PersonalityTrait
-	{
+/// <summary>
+/// A dog's affinity for herding.
+/// </summary>
+public class AffinityForHerding : PersonalityTrait
+{
     protected override void GenerateAlleles()
     {
         this.AddAllele(new('h', "Loves Herding", Dominant));

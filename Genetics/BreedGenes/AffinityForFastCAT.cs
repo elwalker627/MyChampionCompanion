@@ -1,8 +1,11 @@
 ﻿using Genetics;
 namespace GeneralGenes;
 
-	public class AffinityForFastCAT : PersonalityTrait
-	{
+/// <summary>
+/// A dog's affinity for FastCAT.
+/// </summary>
+public class AffinityForFastCAT : PersonalityTrait
+{
     protected override void GenerateAlleles()
     {
         this.AddAllele(new('f', "Loves FastCAT", Dominant));

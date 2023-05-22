@@ -1,8 +1,11 @@
 ﻿using Genetics;
 namespace IcelandicSheepdog;
 
-	public class MarkingsIcelandicSheepdog : GeneInformationAbstract
-	{
+/// <summary>
+/// An Icelandic Sheepdog's markings.
+/// </summary>
+public class MarkingsIcelandicSheepdog : GeneInformationAbstract
+{
     public MarkingsIcelandicSheepdog() : base()
     {
         this.IsCodominant = true;

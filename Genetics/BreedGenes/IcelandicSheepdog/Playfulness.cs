@@ -1,6 +1,9 @@
 ﻿using Genetics;
 namespace GeneralGenes;
 
+/// <summary>
+/// An Icelandic Sheepdog's playfulness level.
+/// </summary>
 public class Playfulness : PersonalityTrait
 {
     protected override void GenerateAlleles()

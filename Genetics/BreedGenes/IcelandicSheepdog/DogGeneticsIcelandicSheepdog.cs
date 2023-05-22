@@ -3,6 +3,9 @@ using Vocabulary;
 
 namespace IcelandicSheepdog;
 
+/// <summary>
+/// An Icelandic Sheepdog's genetics.
+/// </summary>
 public class DogGeneticsIcelandicSheepdog : DogGeneticsAbstract
 {
     public DogGeneticsIcelandicSheepdog(GeneticsOptionsAbstract options,

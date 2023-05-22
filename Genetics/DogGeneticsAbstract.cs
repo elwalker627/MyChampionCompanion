@@ -2,6 +2,9 @@
 using GeneralGenes;
 namespace Genetics;
 
+/// <summary>
+/// An abstract version of a dog's genetics.
+/// </summary>
 public abstract class DogGeneticsAbstract
 {
     private Dictionary<String, AlleleSet> alleleSets;

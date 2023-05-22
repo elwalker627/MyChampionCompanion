@@ -1,6 +1,9 @@
 ﻿using Genetics;
 namespace GeneralGenes;
 
+/// <summary>
+/// A dog's friendliness level.
+/// </summary>
 public class Friendliness : PersonalityTrait
 {
     protected override void GenerateAlleles()

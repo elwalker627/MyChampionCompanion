@@ -1,8 +1,11 @@
 ﻿using Genetics;
 namespace GeneralGenes;
 
-	public class AffinityForSwimmingAndDockDiving : PersonalityTrait
-	{
+/// <summary>
+/// A dog's affinity for swimming and dock diving.
+/// </summary>
+public class AffinityForSwimmingAndDockDiving : PersonalityTrait
+{
     protected override void GenerateAlleles()
     {
         this.AddAllele(new('s', "Loves Swimming and Dock Diving", Dominant));

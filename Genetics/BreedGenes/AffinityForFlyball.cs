@@ -1,8 +1,11 @@
 ﻿using Genetics;
 namespace GeneralGenes;
 
-	public class AffinityForFlyball : PersonalityTrait
-	{
+/// <summary>
+/// A dog's affinity for flyball.
+/// </summary>
+public class AffinityForFlyball : PersonalityTrait
+{
     protected override void GenerateAlleles()
     {
         this.AddAllele(new('b', "Loves Flyball", Dominant));

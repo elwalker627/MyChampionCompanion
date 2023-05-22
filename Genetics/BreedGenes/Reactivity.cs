@@ -1,6 +1,9 @@
 ﻿using Genetics;
 namespace GeneralGenes;
 
+/// <summary>
+/// A dog's reactivity level.
+/// </summary>
 public class Reactivity : PersonalityTrait
 {
     public override bool EthicalToBreed(AlleleBasic a, AlleleBasic b)

@@ -1,6 +1,9 @@
 ﻿using Vocabulary;
 namespace Genetics;
 
+/// <summary>
+/// An abstract version of a gene's information.
+/// </summary>
 public abstract class GeneInformationAbstract
 {
     /// <summary>

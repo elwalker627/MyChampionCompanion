@@ -2,10 +2,17 @@
 using Vocabulary;
 namespace Genetics;
 
+/// <summary>
+/// An abstract option of the options for the genetics of a specific breed.
+/// </summary>
 public abstract class GeneticsOptionsAbstract
 {
 	private Dictionary<String, GeneInformationAbstract> genes;
 
+    /// <summary>
+    /// Creates the genetic options with the keys being the gene name list.
+    /// </summary>
+    /// <param name="geneNameList">The keys to the genes.</param>
 	public GeneticsOptionsAbstract(GeneNameListAbstract geneNameList)
 	{
 		genes = new();

@@ -1,14 +1,17 @@
 ﻿using Genetics;
 namespace IcelandicSheepdog;
 
-public class Hips : GeneInformationAbstract
+/// <summary>
+/// An Icelandic Sheepdog's hips.
+/// </summary>
+public class HipsIcelandicSheepdog : GeneInformationAbstract
 {
     private Dictionary<char, int> hipsScores;
     private Dictionary<int, char> scoresHips;
     public const int EthicalCutoff = 3;
 
     /// <inheritdoc/>
-    public Hips() : base()
+    public HipsIcelandicSheepdog() : base()
     {
         this.IsIncompletelyDominant = true;
     }

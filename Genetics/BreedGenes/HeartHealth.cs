@@ -1,6 +1,9 @@
 ﻿using Genetics;
 namespace Vocabulary;
 
+/// <summary>
+/// A dog's heart health.
+/// </summary>
 public class HeartHealth : GeneInformationAbstract
 {
     public override bool EthicalPhenotype(AlleleBasic a, AlleleBasic b)

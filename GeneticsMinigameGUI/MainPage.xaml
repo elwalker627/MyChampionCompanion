@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GeneticsMinigameGUI.MainPage"
+             SizeChanged="SetWidths">
+
+    <VerticalStackLayout Margin="5">
+        <Label Text="My Champion Companion"
+               HorizontalTextAlignment="Center"
+               VerticalTextAlignment="Center"
+               FontSize="Title"/>
+        <HorizontalStackLayout Margin="5">
+            <Label Text="Name: "
+                   FontSize="Subtitle"
+                   VerticalTextAlignment="Center"/>
+            <Entry x:Name="NameEntry"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Margin="5">
+            <Label Text="Breed: "
+                   FontSize="Subtitle"
+                   VerticalTextAlignment="Center"/>
+            <Picker x:Name="BreedPicker">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                      <x:String>Icelandic Sheepdog</x:String>
+                      <x:String>Rottweiler</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+
+            </Picker>
+        </HorizontalStackLayout>
+        <Grid RowDefinitions="Auto"
+              ColumnDefinitions=".25*, .25*, .25*, .25*"
+              Margin="5">
+            <Button Text="Start"
+                   FontSize="Subtitle"/>
+            <Button Text="Load"
+                   FontSize="Subtitle"
+                    Grid.Column="1"/>
+            <Button Text="Info"
+                   FontSize="Subtitle"
+                    Grid.Column="2"/>
+            <Button Text="Help"
+                   FontSize="Subtitle"
+                    Grid.Column="3"/>
+
+        </Grid>
+
+    </VerticalStackLayout>
+
+</ContentPage>

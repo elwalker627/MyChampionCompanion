@@ -1,6 +1,9 @@
 ﻿using Genetics;
 namespace IcelandicSheepdog;
 
+/// <summary>
+/// An Icelandic Sheepdog's eye color.
+/// </summary>
 public class EyeColorIcelandicSheedog : GeneInformationAbstract
 {
     public override bool EthicalPhenotype(AlleleBasic a, AlleleBasic b)

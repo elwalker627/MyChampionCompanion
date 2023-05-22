@@ -1,6 +1,9 @@
 ﻿using Genetics;
 namespace IcelandicSheepdog;
 
+/// <summary>
+/// An Icelandic Sheepdog's coat color.
+/// </summary>
 public class CoatColorIcelandicSheepdog : GeneInformationAbstract
 {
     /// <summary>

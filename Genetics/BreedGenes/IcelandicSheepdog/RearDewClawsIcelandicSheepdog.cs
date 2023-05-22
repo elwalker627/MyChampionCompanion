@@ -1,6 +1,9 @@
 ﻿using Genetics;
 namespace IcelandicSheepdog;
 
+/// <summary>
+/// An Icelandic Sheepdog's rear dew claws.
+/// </summary>
 public class FrontDewClawsIcelandicSheepdog : GeneInformationAbstract
 {
     public override bool EthicalPhenotype(AlleleBasic a, AlleleBasic b)

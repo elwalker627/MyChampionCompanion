@@ -1,5 +1,8 @@
 ﻿namespace Genetics;
 
+/// <summary>
+/// A basic allele.
+/// </summary>
 public class AlleleBasic : IComparable<AlleleBasic>
 {
 	/// <summary>

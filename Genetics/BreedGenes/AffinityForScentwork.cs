@@ -1,8 +1,11 @@
 ﻿using Genetics;
 namespace GeneralGenes;
 
-	public class AffinityForScentwork : PersonalityTrait
-	{
+/// <summary>
+/// A dog's affinity for scent work.
+/// </summary>
+public class AffinityForScentwork : PersonalityTrait
+{
     protected override void GenerateAlleles()
     {
         this.AddAllele(new('s', "Loves Scentwork", Dominant));

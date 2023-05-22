@@ -1,6 +1,9 @@
 ﻿using Genetics;
 namespace IcelandicSheepdog;
 
+/// <summary>
+/// An Icelandic Sheepdog's barking level.
+/// </summary>
 public class BarkingLevelIcelandicSheepdog : GeneInformationAbstract
 {
     public override bool EthicalPhenotype(AlleleBasic a, AlleleBasic b)

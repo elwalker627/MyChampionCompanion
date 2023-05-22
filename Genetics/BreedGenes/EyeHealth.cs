@@ -1,6 +1,9 @@
 ﻿using Genetics;
 namespace GeneralGenes;
 
+/// <summary>
+/// A dog's eye health.
+/// </summary>
 public class EyeHealth : GeneInformationAbstract
 {
     public override bool EthicalPhenotype(AlleleBasic a, AlleleBasic b)

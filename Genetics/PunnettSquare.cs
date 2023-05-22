@@ -6,11 +6,23 @@ using System.Xml.Linq;
 
 namespace PunnettSquareSpace;
 
+/// <summary>
+/// Represents a punnett square.
+/// </summary>
 public class PunnettSquare
 {
 	public String[,] Square { get; private set; }
 	private int size;
 
+	/// <summary>
+	/// Creates a punnett square with the given information.
+	/// </summary>
+	/// <param name="geneticsA">The genetics of a parent.</param>
+	/// <param name="geneticsB">The genetics of a parent.</param>
+	/// <param name="genesToWorryAbout">A list of the genes to include in the
+	/// punnett square.</param>
+	/// <exception cref="ArgumentException">If there is an invalid number of
+	/// genes to include in the punnett square.</exception>
 	public PunnettSquare(DogGeneticsAbstract geneticsA,
 		DogGeneticsAbstract geneticsB, IEnumerable<String> genesToWorryAbout)
 	{
@@ -20,6 +32,7 @@ public class PunnettSquare
 		size = (int)Math.Pow(2, genesToWorryAbout.Count()) + 1;
 		this.Square = new String[size,size];
 
+		// Gets the alleles of the genes to worry about.
         List<AlleleSet> setsA = new();
         List<AlleleSet> setsB = new();
         foreach (String geneName in genesToWorryAbout)
@@ -28,11 +41,11 @@ public class PunnettSquare
             setsB.Add(geneticsB.GetAlleleSet(geneName));
         }
 
+		// Sets all the spots in the square to blank.
 		for(int i = 0; i < size; i++)
 			for(int j = 0; j < size; j++)
 				Square[i,j] = "";
 
-		// The top-left entry should be empty
 		for (int i = 0; i < genesToWorryAbout.Count(); i++)
 		{
 			int mod = (int)Math.Pow(2, genesToWorryAbout.Count() - 1 - i);
@@ -40,6 +53,9 @@ public class PunnettSquare
 
             for (int j = 1; j < size; j++)
 			{
+				// Alternate which allele is added. This algorithm makes it so
+				// that if it's decided to allow more genes in the punnett
+				// square, the algorithm does not need to change.
 				if ((j - 1) % mod == 0 && j != 1)
                     alleleA = !alleleA;
 
@@ -58,6 +74,7 @@ public class PunnettSquare
 
         }
 
+		// Adds the column and row together to create the resulting gene.
 		for (int i = 1; i < size; i++)
 			for (int j = 1; j < size; j++)
 				Square[i, j] = AddColAndRow(i, j);

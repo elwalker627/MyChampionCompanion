@@ -2,6 +2,9 @@
 using Vocabulary;
 namespace IcelandicSheepdog;
 
+/// <summary>
+/// An Icelandic Sheepdog's genetic options.
+/// </summary>
 public class GeneticOptionsIcelandicSheepdog : GeneticsOptionsAbstract
 {
     public GeneticOptionsIcelandicSheepdog(GeneNameListAbstract geneNameList) : base(geneNameList)
@@ -17,7 +20,7 @@ public class GeneticOptionsIcelandicSheepdog : GeneticsOptionsAbstract
         GeneNameListIcelandicSheepdog icelandicSheepdogGeneNameList =
             (GeneNameListIcelandicSheepdog)geneNameList;
 
-        this.AddGene(icelandicSheepdogGeneNameList.Hips, new Hips());
+        this.AddGene(icelandicSheepdogGeneNameList.Hips, new HipsIcelandicSheepdog());
         this.AddGene(icelandicSheepdogGeneNameList.CoatColor, new CoatColorIcelandicSheepdog());
         this.AddGene(icelandicSheepdogGeneNameList.CoatLength, new CoatLengthIcelandicSheepdog());
         this.AddGene(icelandicSheepdogGeneNameList.CoatTexture, new CoatTextureIcelandicSheepdog());

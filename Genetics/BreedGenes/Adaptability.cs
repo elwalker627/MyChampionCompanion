@@ -1,6 +1,9 @@
 ﻿using Genetics;
 namespace GeneralGenes;
 
+/// <summary>
+/// A dog's level of adaptability.
+/// </summary>
 public class Adaptability : PersonalityTrait
 {
     protected override void GenerateAlleles()

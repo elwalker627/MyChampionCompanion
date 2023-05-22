@@ -1,8 +1,11 @@
 ﻿using Genetics;
 namespace IcelandicSheepdog;
 
-	public class SheddingIcelandicSheepdog : GeneInformationAbstract
-	{
+/// <summary>
+/// An Icelandic Sheepdog's shedding level.
+/// </summary>
+public class SheddingIcelandicSheepdog : GeneInformationAbstract
+{
     public override bool EthicalPhenotype(AlleleBasic a, AlleleBasic b)
     {
         return a.Representation == 's' && b.Representation == 's';

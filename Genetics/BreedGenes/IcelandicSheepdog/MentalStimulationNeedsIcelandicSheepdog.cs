@@ -1,7 +1,10 @@
 ﻿using Genetics;
 namespace IcelandicSheepdog;
 
-	public class MentalStimulationNeedsIcelandicSheepdog : GeneInformationAbstract
+/// <summary>
+/// An Icelandic Sheepdog's mental stimulation needs.
+/// </summary>
+public class MentalStimulationNeedsIcelandicSheepdog : GeneInformationAbstract
 {
     public override bool EthicalPhenotype(AlleleBasic a, AlleleBasic b)
     {

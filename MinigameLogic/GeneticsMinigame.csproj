@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Dog\Dog.csproj" />
+    <ProjectReference Include="..\Genetics\Genetics.csproj" />
+    <ProjectReference Include="..\Person\Person.csproj" />
+  </ItemGroup>
 </Project>

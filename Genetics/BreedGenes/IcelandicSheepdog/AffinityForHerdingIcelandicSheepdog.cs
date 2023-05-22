@@ -2,6 +2,9 @@
 using GeneralGenes;
 namespace IcelandicSheepdog;
 
+/// <summary>
+/// An Icelandic Sheepdog's affinity for herding.
+/// </summary>
 public class AffinityForHerdingIcelandicSheepdog : AffinityForHerding
 {
     public override bool EthicalPhenotype(AlleleBasic a, AlleleBasic b)

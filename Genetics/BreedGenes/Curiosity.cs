@@ -1,6 +1,9 @@
 ﻿using Genetics;
 namespace GeneralGenes;
 
+/// <summary>
+/// A dog's curiosity level.
+/// </summary>
 public class Curiosity : PersonalityTrait
 {
     protected override void GenerateAlleles()

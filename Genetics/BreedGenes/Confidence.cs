@@ -1,6 +1,9 @@
 ﻿using Genetics;
 namespace GeneralGenes;
 
+/// <summary>
+/// A dog's confidence level.
+/// </summary>
 public class Confidence : PersonalityTrait
 {
     protected override void GenerateAlleles()

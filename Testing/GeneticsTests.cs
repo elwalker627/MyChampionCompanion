@@ -531,17 +531,17 @@ public class GeneticsTests
     [TestMethod]
     public void HipsConstructorAndProperties()
     {
-        GeneInformationAbstract geneInfo = new Hips();
+        GeneInformationAbstract geneInfo = new HipsIcelandicSheepdog();
 
         Assert.IsFalse(geneInfo.IsCodominant);
         Assert.IsTrue(geneInfo.IsIncompletelyDominant);
-        Assert.AreEqual(3, Hips.EthicalCutoff);
+        Assert.AreEqual(3, HipsIcelandicSheepdog.EthicalCutoff);
     }
 
     [TestMethod]
     public void HipsPhenotype()
     {
-        GeneInformationAbstract geneInfo = new Hips();
+        GeneInformationAbstract geneInfo = new HipsIcelandicSheepdog();
         int times = 50;
 
         for (int i = 0; i < times; i++)
@@ -620,7 +620,7 @@ public class GeneticsTests
     [TestMethod]
     public void HipsTruths()
     {
-        GeneInformationAbstract geneInfo = new Hips();
+        GeneInformationAbstract geneInfo = new HipsIcelandicSheepdog();
         int times = 5;
 
         for (int i = 0; i < times; i++)
@@ -629,7 +629,7 @@ public class GeneticsTests
             AlleleBasic alleleB = geneInfo.GetAnyAllele();
 
             if (GetHipScoreTotal(alleleA.Representation,
-                alleleB.Representation) >= Hips.EthicalCutoff)
+                alleleB.Representation) >= HipsIcelandicSheepdog.EthicalCutoff)
             {
                 Assert.IsTrue(geneInfo.EthicalPhenotype(alleleA, alleleB));
                 Assert.IsTrue(geneInfo.EthicalToBreed(alleleA, alleleB));
@@ -645,7 +645,7 @@ public class GeneticsTests
     [TestMethod]
     public void HipsGetAnyAllele()
     {
-        GeneInformationAbstract geneInfo = new Hips();
+        GeneInformationAbstract geneInfo = new HipsIcelandicSheepdog();
         int times = 50;
 
         bool[] scores = new bool[6];
@@ -664,7 +664,7 @@ public class GeneticsTests
     [TestMethod]
     public void HipsGetEthicalAllele()
     {
-        GeneInformationAbstract geneInfo = new Hips();
+        GeneInformationAbstract geneInfo = new HipsIcelandicSheepdog();
         int times = 20;
 
         for (int i = 0; i < times; i++)
@@ -677,7 +677,7 @@ public class GeneticsTests
     [TestMethod]
     public void HipsIsUnethical()
     {
-        GeneInformationAbstract geneInfo = new Hips();
+        GeneInformationAbstract geneInfo = new HipsIcelandicSheepdog();
         int times = 20;
 
         for (int i = 0; i < times; i++)
@@ -690,7 +690,7 @@ public class GeneticsTests
     [TestMethod]
     public void HipsIsStandard()
     {
-        GeneInformationAbstract geneInfo = new Hips();
+        GeneInformationAbstract geneInfo = new HipsIcelandicSheepdog();
         int times = 20;
 
         for (int i = 0; i < times; i++)
@@ -703,7 +703,7 @@ public class GeneticsTests
     [TestMethod]
     public void HipsIsNaturallyOcurring()
     {
-        GeneInformationAbstract geneInfo = new Hips();
+        GeneInformationAbstract geneInfo = new HipsIcelandicSheepdog();
         int times = 20;
 
         for (int i = 0; i < times; i++)
@@ -716,7 +716,7 @@ public class GeneticsTests
     [TestMethod]
     public void HipsEthicalToBreed()
     {
-        GeneInformationAbstract geneInfo = new Hips();
+        GeneInformationAbstract geneInfo = new HipsIcelandicSheepdog();
         int times = 50;
 
         for (int i = 0; i < times; i++)
@@ -724,7 +724,7 @@ public class GeneticsTests
             AlleleBasic alleleA = geneInfo.GetEthicalAllele();
             AlleleBasic alleleB = geneInfo.GetEthicalAllele();
             if (GetHipScoreTotal(alleleA.Representation,
-                alleleB.Representation) >= Hips.EthicalCutoff)
+                alleleB.Representation) >= HipsIcelandicSheepdog.EthicalCutoff)
                     Assert.IsTrue(geneInfo.EthicalToBreed(alleleA, alleleB));
             else
                 Assert.IsFalse(geneInfo.EthicalToBreed(alleleA, alleleB));

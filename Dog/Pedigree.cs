@@ -3,6 +3,10 @@ using Genetics;
 
 namespace Dog;
 
+/// <summary>
+/// A full pedigree, including the self, parents, grandparents, and
+/// great-grandparents.
+/// </summary>
 public class Pedigree : BasicPedigree
 {
     public Dog Mother { get; protected set; }
@@ -21,6 +25,14 @@ public class Pedigree : BasicPedigree
     public Dog PMGreat_Grandmother { get; protected set; }
     public Dog PPGreat_Grandmother { get; protected set; }
 
+    /// <summary>
+    /// Creates a pedigree from the parents' pedigrees.
+    /// </summary>
+    /// <param name="motherBasicPedigree">The mother's pedigree.</param>
+    /// <param name="fatherBasicPedigree">The father's pedigree.</param>
+    /// <param name="self">The dog itself.</param>
+    /// <exception cref="Exception">If either of the parents' pedigrees are
+    /// basic.</exception>
     public Pedigree(BasicPedigree motherBasicPedigree, BasicPedigree fatherBasicPedigree, Dog self)
         : base(self)
     {
@@ -37,21 +49,27 @@ public class Pedigree : BasicPedigree
         this.PaternalGrandfather = fatherPedigree.Father;
         this.PaternalGrandMother = fatherPedigree.Mother;
 
-        this.MMGreat_Grandmother = ((Pedigree)motherPedigree.Mother.pedigree).Mother;
-        this.MMGreat_Grandfather = ((Pedigree)motherPedigree.Mother.pedigree).Father;
+        this.MMGreat_Grandmother = ((Pedigree)motherPedigree.Mother.Pedigree).Mother;
+        this.MMGreat_Grandfather = ((Pedigree)motherPedigree.Mother.Pedigree).Father;
 
-        this.MPGreat_Grandfather = ((Pedigree)motherPedigree.Father.pedigree).Father;
-        this.MPGreat_Grandmother = ((Pedigree)motherPedigree.Father.pedigree).Mother;
+        this.MPGreat_Grandfather = ((Pedigree)motherPedigree.Father.Pedigree).Father;
+        this.MPGreat_Grandmother = ((Pedigree)motherPedigree.Father.Pedigree).Mother;
 
-        this.PPGreat_Grandfather = ((Pedigree)fatherPedigree.Father.pedigree).Father;
-        this.PPGreat_Grandmother = ((Pedigree)fatherPedigree.Father.pedigree).Mother;
+        this.PPGreat_Grandfather = ((Pedigree)fatherPedigree.Father.Pedigree).Father;
+        this.PPGreat_Grandmother = ((Pedigree)fatherPedigree.Father.Pedigree).Mother;
 
-        this.PMGreat_Grandfather = ((Pedigree)fatherPedigree.Mother.pedigree).Father;
-        this.PMGreat_Grandmother = ((Pedigree)fatherPedigree.Mother.pedigree).Mother;
+        this.PMGreat_Grandfather = ((Pedigree)fatherPedigree.Mother.Pedigree).Father;
+        this.PMGreat_Grandmother = ((Pedigree)fatherPedigree.Mother.Pedigree).Mother;
 
         this.SetUpPedigree();
     }
 
+    /// <summary>
+    /// Creates a pedigree with the given list of grandparents.
+    /// </summary>
+    /// <param name="ggGrandparents"></param>
+    /// <param name="constructor"></param>
+    /// <exception cref="Exception"></exception>
     public Pedigree(List<Dog> ggGrandparents, Func<DogGeneticsAbstract,
         DogGeneticsAbstract, Dog> constructor) : base(ggGrandparents[0])
     {
@@ -87,6 +105,12 @@ public class Pedigree : BasicPedigree
 
     }
 
+    /// <summary>
+    /// Determines whether this pedigree is equivalent to other.
+    /// </summary>
+    /// <param name="obj">The other object.</param>
+    /// <returns>True if this pedigree is equivalent to obj, false otherwise.
+    /// </returns>
     public override bool Equals(object? obj)
     {
         if (!(obj is Pedigree))
@@ -101,7 +125,7 @@ public class Pedigree : BasicPedigree
             this.MMGreat_Grandfather == b.MMGreat_Grandfather &&
             this.MMGreat_Grandmother == b.MaternalGrandMother &&
             this.PPGreat_Grandfather == b.PPGreat_Grandfather &&
-            this.PPGreat_Grandmother == a.PPGreat_Grandmother &&
+            this.PPGreat_Grandmother == b.PPGreat_Grandmother &&
             this.MPGreat_Grandfather == b.MPGreat_Grandfather &&
             this.MPGreat_Grandmother == b.MPGreat_Grandmother &&
             this.PMGreat_Grandfather == b.PMGreat_Grandfather &&
@@ -151,10 +175,10 @@ public class Pedigree : BasicPedigree
     {
         if (this.ancestors.Contains(dog))
             return true;
-        else if (dog.pedigree is BasicPedigree)
+        else if (dog.Pedigree is BasicPedigree)
             return false;
 
-        List<Dog> pedigree = ((Pedigree)dog.pedigree).ancestors;
+        List<Dog> pedigree = ((Pedigree)dog.Pedigree).ancestors;
         foreach (Dog ancestor in ancestors)
             if (pedigree.Contains(ancestor))
                 return true;

@@ -8,7 +8,6 @@ public abstract class GeneNameListAbstract
 {
     public String CoatColor { get { return new("coat_color"); } }
     public String CoatLength { get { return new("coat_length"); } }
-    public String Hips { get { return new("hips"); } }
     public String EyeHealth { get { return new("eye_health"); } }
     public String HeartHealth { get { return new("heart_health"); } }
     public String Trainability { get { return new("trainability"); } }
@@ -16,6 +15,7 @@ public abstract class GeneNameListAbstract
     public String Reactivity { get { return new("reactivity"); } }
     public String CoatTexture { get { return new("coat_texture"); } }
     public String Shedding { get { return new("shedding"); } }
+    public String EyeColor { get { return new("eye_color"); } }
 
     public String Markings { get { return new("markings"); } }
     public String AffectionLevel { get { return new("affection_level"); } }
@@ -36,7 +36,6 @@ public abstract class GeneNameListAbstract
     public String AffinityForBarnhunt { get { return new("affinity_for_barnhunt"); } }
     public String AffinityForScentwork { get { return new("affinity_for_scentwork"); } }
     public String AffinityForDisc { get { return new("affinity_for_disc"); } }
-    public String EyeColor { get { return new("eye_color"); } }
     public String[] GeneNames { get { return geneNames.ToArray(); } }
 
     protected HashSet<String> geneNames;
@@ -65,7 +64,6 @@ public abstract class GeneNameListAbstract
 
         returner.Add(CoatColor);
         returner.Add(CoatLength);
-        returner.Add(Hips);
         returner.Add(EyeHealth);
         returner.Add(HeartHealth);
         returner.Add(Trainability);
@@ -73,6 +71,7 @@ public abstract class GeneNameListAbstract
         returner.Add(Reactivity);
         returner.Add(CoatTexture);
         returner.Add(Shedding);
+        returner.Add(EyeColor);
 
         returner.Add(Markings);
         returner.Add(AffectionLevel);
@@ -93,7 +92,6 @@ public abstract class GeneNameListAbstract
         returner.Add(AffinityForBarnhunt);
         returner.Add(AffinityForScentwork);
         returner.Add(AffinityForDisc);
-        returner.Add(EyeColor);
 
         return returner;
     }

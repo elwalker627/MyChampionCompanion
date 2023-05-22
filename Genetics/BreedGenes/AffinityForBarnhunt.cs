@@ -1,6 +1,9 @@
 ﻿using Genetics;
 namespace GeneralGenes;
 
+/// <summary>
+/// A dog's affinity for barnhunt.
+/// </summary>
 public class AffinityForBarnhunt : PersonalityTrait
 {
     protected override void GenerateAlleles()
