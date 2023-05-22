@@ -6,6 +6,9 @@ using Person;
 
 namespace GeneticsMinigame;
 
+/// <summary>
+/// The logic for the genetics minigame.
+/// </summary>
 public class GeneticsMinigame
 {
     public Person.Person player;
@@ -14,24 +17,37 @@ public class GeneticsMinigame
     protected String breed;
     protected Names names;
 
+    /// <summary>
+    /// Creates a genetics minigame object, which keeps track of the logic.
+    /// </summary>
+    /// <param name="breed">The name of the breed. MUST be a valid breed name.
+    /// </param>
+    /// <param name="name">The name of the player.</param>
+    /// <exception cref="Exception">If the breed name is invalid.</exception>
     public GeneticsMinigame(String breed, String name)
     {
         this.breed = breed;
         this.names = new();
+        int numberOfDogs = 4;
 
-        switch(breed)
+        this.player = new(name);
+
+        switch (breed)
         {
             case "Icelandic Sheepdog":
                 this.geneNameList = new GeneNameListIcelandicSheepdog();
                 this.options = new GeneticOptionsIcelandicSheepdog(geneNameList);
+                for (int i = 0; i < numberOfDogs; i++)
+                {
+                    Dog.Dog dog = new Dog.IcelandicSheepdog(true, options, names);
+                    this.player.AddDog(dog, dog.Name);
+                }
                 break;
             case "Rottweiler":
                 throw new Exception("Rottweiler breed information not implemented yet.");
             default:
                 throw new Exception("Invalid breed name.");
         }
-
-        this.player = new(name);
     }
 
     /// <summary>

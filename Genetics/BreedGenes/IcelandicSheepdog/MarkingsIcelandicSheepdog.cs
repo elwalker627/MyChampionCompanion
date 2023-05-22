@@ -6,7 +6,8 @@ namespace IcelandicSheepdog;
 /// </summary>
 public class MarkingsIcelandicSheepdog : GeneInformationAbstract
 {
-    public MarkingsIcelandicSheepdog() : base()
+    public MarkingsIcelandicSheepdog() : base("The markings on the coat of " +
+        "the dog.", "Markings")
     {
         this.IsCodominant = true;
     }

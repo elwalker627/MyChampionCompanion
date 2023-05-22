@@ -12,5 +12,10 @@ public class ConfidenceIcelandicSheepdog : Confidence
         return a.Representation == 'c' ||
             b.Representation == 'c';
     }
+
+    public override bool IdealDog(char c)
+    {
+        return c == 'c';
+    }
 }
 

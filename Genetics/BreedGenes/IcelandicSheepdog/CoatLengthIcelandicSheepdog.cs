@@ -6,6 +6,12 @@ namespace IcelandicSheepdog;
 /// </summary>
 public class CoatLengthIcelandicSheepdog : GeneInformationAbstract
 {
+    public CoatLengthIcelandicSheepdog() : base("The length of the dog's coat.",
+        "Coat Length")
+    {
+
+    }
+
     public override bool EthicalPhenotype(AlleleBasic a, AlleleBasic b)
     {
         return (a.Representation == 's' && b.Representation == 's') ||

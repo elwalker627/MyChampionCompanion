@@ -6,6 +6,11 @@ namespace GeneralGenes;
 /// </summary>
 public class Friendliness : PersonalityTrait
 {
+    public Friendliness() : base("The friendliness of the dog.", "Friendliness")
+    {
+
+    }
+
     protected override void GenerateAlleles()
     {
         this.AddAllele(new('f', "Friendly", Dominant));

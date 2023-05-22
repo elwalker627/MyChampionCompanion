@@ -12,5 +12,10 @@ public class FriendlinessIcelandicSheepdog : Friendliness
         return a.Representation == 'f' ||
             b.Representation == 'f';
     }
+
+    public override bool IdealDog(char c)
+    {
+        return c == 'f';
+    }
 }
 

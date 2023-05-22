@@ -6,6 +6,12 @@ namespace GeneralGenes;
 /// </summary>
 public class AffinityForDisc : PersonalityTrait
 {
+    public AffinityForDisc() : base("How well the dog enjoys disc.",
+        "Affinity for Disc")
+    {
+
+    }
+
     protected override void GenerateAlleles()
     {
         this.AddAllele(new('d', "Loves Disc", Dominant));

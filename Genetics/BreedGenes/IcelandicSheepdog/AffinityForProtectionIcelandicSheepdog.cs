@@ -17,5 +17,10 @@ public class AffinityForProtectionIcelandicSheepdog : AffinityForProtection
     {
         return character == 'i';
     }
+
+    public override bool IdealDog(char c)
+    {
+        return c == 'i';
+    }
 }
 

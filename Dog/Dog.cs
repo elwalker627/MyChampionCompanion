@@ -1,5 +1,6 @@
 ﻿using Genetics;
 using Competitions;
+using Vocabulary;
 namespace Dog;
 
 /// <summary>
@@ -132,5 +133,27 @@ public abstract class Dog
     /// Sets the average litter sizes and average ages.
     /// </summary>
     protected abstract void SetConstants();
+
+    /// <summary>
+    /// Determines if this dog is the ideal dog.
+    /// </summary>
+    /// <param name="geneNameList">A list of the gene names of this breed.</param>
+    /// <param name="options">The genetic options of this breed.</param>
+    /// <returns>True if this is the ideal dog, false otherwise.</returns>
+    public bool IdealDog(GeneNameListAbstract geneNameList, GeneticsOptionsAbstract options)
+    {
+        foreach (String geneName in geneNameList.GeneNames)
+        {
+            AlleleSet set = genetics.GetAlleleSet(geneName);
+
+            if (!options.GetGene(geneName).IdealDog(set.alleleA.Representation))
+                return false;
+
+            if (!options.GetGene(geneName).IdealDog(set.alleleB.Representation))
+                return false;
+        }
+
+        return true;
+    }
 }
 

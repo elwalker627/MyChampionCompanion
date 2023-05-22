@@ -23,5 +23,10 @@ public class AffinityForHerdingIcelandicSheepdog : AffinityForHerding
     {
         return character == 'h';
     }
+
+    public override bool IdealDog(char c)
+    {
+        return c == 'h';
+    }
 }
 

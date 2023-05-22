@@ -6,6 +6,11 @@ namespace GeneralGenes;
 /// </summary>
 public class AffectionLevel : PersonalityTrait
 {
+    public AffectionLevel() : base("How affectionate the a dog is.", "Affection Level")
+    {
+
+    }
+
     protected override void GenerateAlleles()
     {
         this.AddAllele(new('a', "Affectionate", Dominant));

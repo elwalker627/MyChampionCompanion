@@ -6,6 +6,12 @@ namespace IcelandicSheepdog;
 /// </summary>
 public class BarkingLevelIcelandicSheepdog : GeneInformationAbstract
 {
+    public BarkingLevelIcelandicSheepdog() : base("The barking level of the " +
+        "dog.", "Barking Level")
+    {
+
+    }
+
     public override bool EthicalPhenotype(AlleleBasic a, AlleleBasic b)
     {
         return IsNaturallyOcurring(a.Representation) &&
@@ -21,6 +27,11 @@ public class BarkingLevelIcelandicSheepdog : GeneInformationAbstract
     public override bool IsNaturallyOcurring(char character)
     {
         return character == 'b';
+    }
+
+    public override bool IdealDog(char c)
+    {
+        return c == 'b';
     }
 }
 

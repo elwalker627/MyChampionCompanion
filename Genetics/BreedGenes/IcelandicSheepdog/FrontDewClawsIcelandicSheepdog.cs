@@ -4,8 +4,14 @@ namespace IcelandicSheepdog;
 /// <summary>
 /// An Icelandic Sheepdog's front dew claws.
 /// </summary>
-public class RearDewClawsIcelandicSheepdog : GeneInformationAbstract
+public class FrontDewClawsIcelandicSheepdog : GeneInformationAbstract
 {
+    public FrontDewClawsIcelandicSheepdog() : base("The front dew claws " +
+        "of the dog. Dew claws are essentially extra toes.", "Front Dew Claws")
+    {
+
+    }
+
     public override bool EthicalPhenotype(AlleleBasic a, AlleleBasic b)
     {
         return IsNaturallyOcurring(a.Representation) ||
@@ -22,6 +28,11 @@ public class RearDewClawsIcelandicSheepdog : GeneInformationAbstract
     public override bool IsNaturallyOcurring(char character)
     {
         return character == 's' || character == 'd';
+    }
+
+    public override bool IdealDog(char c)
+    {
+        return c == 'd';
     }
 }
 

@@ -15,6 +15,7 @@ public abstract class GeneInformationAbstract
     public String Name { get; protected set; }
     protected int Recessive { get { return 0; } }
     protected int Dominant { get { return 100; } }
+    public String Description { get; protected set; }
 
     /// <summary>
     /// Incomplete dominance is where two equally dominant genes mix their
@@ -38,10 +39,12 @@ public abstract class GeneInformationAbstract
     /// <param name="isCodominant">Whether the gene is codominant.</param>
     /// <exception cref="ArgumentException">When isIncompletelyDominant and
     /// isCodominant are both true.</exception>
-    public GeneInformationAbstract()
+    public GeneInformationAbstract(String description, String name)
     {
         this.alleles = new();
         this.GenerateAlleles();
+        this.Description = description;
+        this.Name = name;
     }
 
     /// <summary>
@@ -162,5 +165,15 @@ public abstract class GeneInformationAbstract
     protected void AddAllele(AlleleBasic allele)
     {
         this.alleles.Add(allele.Representation, allele);
+    }
+
+    /// <summary>
+    /// Determines if the ideal dog of this breed has this gene.
+    /// </summary>
+    /// <param name="c">The character representation of the allele.</param>
+    /// <returns>True if the gene is in the ideal dog.</returns>
+    public virtual bool IdealDog(char c)
+    {
+        return IsStandard(c);
     }
 }

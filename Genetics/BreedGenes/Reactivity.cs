@@ -6,6 +6,11 @@ namespace GeneralGenes;
 /// </summary>
 public class Reactivity : PersonalityTrait
 {
+    public Reactivity() : base("Whether or not a dog is reactive.", "Reactivity Level")
+    {
+
+    }
+
     public override bool EthicalToBreed(AlleleBasic a, AlleleBasic b)
     {
         return a.Representation == 'n' ||
@@ -22,6 +27,11 @@ public class Reactivity : PersonalityTrait
     {
         this.AddAllele(new('n', "Non-Reactive", Dominant));
         this.AddAllele(new('r', "Reactive", Recessive));
+    }
+
+    public override bool IdealDog(char c)
+    {
+        return c == 'n';
     }
 }
 

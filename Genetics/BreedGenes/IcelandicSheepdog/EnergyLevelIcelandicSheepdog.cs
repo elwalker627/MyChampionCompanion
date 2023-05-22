@@ -6,6 +6,12 @@ namespace IcelandicSheepdog;
 /// </summary>
 public class EnergyLevelIcelandicSheepdog : GeneInformationAbstract
 {
+    public EnergyLevelIcelandicSheepdog() : base("How energetic a dog is.",
+        "Energy Level")
+    {
+
+    }
+
     public override bool EthicalPhenotype(AlleleBasic a, AlleleBasic b)
     {
         return IsNaturallyOcurring(a.Representation) &&

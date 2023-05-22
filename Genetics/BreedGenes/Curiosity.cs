@@ -6,6 +6,11 @@ namespace GeneralGenes;
 /// </summary>
 public class Curiosity : PersonalityTrait
 {
+    public Curiosity() : base("The curiosity levels of the dog", "Curiosity")
+    {
+
+    }
+
     protected override void GenerateAlleles()
     {
         this.AddAllele(new('c', "Curious", Dominant));

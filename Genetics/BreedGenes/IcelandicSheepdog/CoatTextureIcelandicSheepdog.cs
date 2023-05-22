@@ -6,6 +6,12 @@ namespace IcelandicSheepdog;
 /// </summary>
 public class CoatTextureIcelandicSheepdog : GeneInformationAbstract
 {
+    public CoatTextureIcelandicSheepdog() : base("The texture of the coat " +
+        "of the dog.", "Coat Texture")
+    {
+
+    }
+
     public override bool EthicalPhenotype(AlleleBasic a, AlleleBasic b)
     {
         return IsNaturallyOcurring(a.Representation) &&

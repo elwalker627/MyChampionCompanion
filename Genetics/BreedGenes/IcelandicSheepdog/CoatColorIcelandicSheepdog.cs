@@ -6,6 +6,12 @@ namespace IcelandicSheepdog;
 /// </summary>
 public class CoatColorIcelandicSheepdog : GeneInformationAbstract
 {
+    public CoatColorIcelandicSheepdog() : base("The color of the dog's coat.",
+        "Coat Color")
+    {
+
+    }
+
     /// <summary>
     /// Determines if the phenotype from this genotype may have resulted from
     /// an ethical breeder.

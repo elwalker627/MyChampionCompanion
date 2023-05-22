@@ -6,6 +6,12 @@ namespace IcelandicSheepdog;
 /// </summary>
 public class EyeColorIcelandicSheedog : GeneInformationAbstract
 {
+    public EyeColorIcelandicSheedog() : base("The color of the dog's eyes.",
+        "Eye Color")
+    {
+
+    }
+
     public override bool EthicalPhenotype(AlleleBasic a, AlleleBasic b)
     {
         return IsNaturallyOcurring(a.Representation) &&

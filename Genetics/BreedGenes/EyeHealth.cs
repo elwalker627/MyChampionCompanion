@@ -6,6 +6,11 @@ namespace GeneralGenes;
 /// </summary>
 public class EyeHealth : GeneInformationAbstract
 {
+    public EyeHealth() : base("The health of the eyes.", "Eye Health")
+    {
+
+    }
+
     public override bool EthicalPhenotype(AlleleBasic a, AlleleBasic b)
     {
         return IsNaturallyOcurring(a.Representation) ||
@@ -26,6 +31,11 @@ public class EyeHealth : GeneInformationAbstract
     public override bool IsNaturallyOcurring(char character)
     {
         return true;
+    }
+
+    public override bool IdealDog(char c)
+    {
+        return c == 'h';
     }
 }
 

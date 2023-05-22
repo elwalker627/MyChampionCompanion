@@ -13,5 +13,10 @@ public class AdaptabilityIcelandicSheepdog : Adaptability
         return a.Representation == 'a' ||
             b.Representation == 'a';
     }
+
+    public override bool IdealDog(char c)
+    {
+        return c == 'a';
+    }
 }
 

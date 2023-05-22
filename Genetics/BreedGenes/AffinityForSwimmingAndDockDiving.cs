@@ -6,6 +6,12 @@ namespace GeneralGenes;
 /// </summary>
 public class AffinityForSwimmingAndDockDiving : PersonalityTrait
 {
+    public AffinityForSwimmingAndDockDiving() : base("How well the dog enjoys " +
+        "swimming and dock diving", "Affinity for Swimming and Dock Diving")
+    {
+
+    }
+
     protected override void GenerateAlleles()
     {
         this.AddAllele(new('s', "Loves Swimming and Dock Diving", Dominant));

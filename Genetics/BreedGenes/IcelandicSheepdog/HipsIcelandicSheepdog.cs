@@ -11,7 +11,8 @@ public class HipsIcelandicSheepdog : GeneInformationAbstract
     public const int EthicalCutoff = 3;
 
     /// <inheritdoc/>
-    public HipsIcelandicSheepdog() : base()
+    public HipsIcelandicSheepdog() : base("How healthy the hips are. Unhealthy " +
+        "hips are prone to hip dysplasia.", "Hip Health")
     {
         this.IsIncompletelyDominant = true;
     }
@@ -74,5 +75,10 @@ public class HipsIcelandicSheepdog : GeneInformationAbstract
     public override bool IsNaturallyOcurring(char character)
     {
         return true;
+    }
+
+    public override bool IdealDog(char c)
+    {
+        return c == 'e';
     }
 }
