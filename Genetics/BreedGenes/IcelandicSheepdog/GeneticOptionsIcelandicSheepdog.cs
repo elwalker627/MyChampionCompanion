@@ -1,4 +1,5 @@
-﻿using Genetics;
+﻿using GeneralGenes;
+using Genetics;
 using Vocabulary;
 namespace IcelandicSheepdog;
 
@@ -37,6 +38,11 @@ public class GeneticOptionsIcelandicSheepdog : GeneticsOptionsAbstract
         this.AddGene(icelandicSheepdogGeneNameList.RearDewClaws, new RearDewClawsIcelandicSheepdog());
         this.AddGene(icelandicSheepdogGeneNameList.AffinityForHerding, new AffinityForHerdingIcelandicSheepdog());
         this.AddGene(icelandicSheepdogGeneNameList.Trainability, new TrainabilityIcelandicSheepdog());
+        this.AddGene(icelandicSheepdogGeneNameList.AffinityForProtection, new AffinityForProtectionIcelandicSheepdog());
+        this.AddGene(icelandicSheepdogGeneNameList.Curiosity, new CuriosityIcelandicSheepdog());
+        this.AddGene(icelandicSheepdogGeneNameList.Playfulness, new PlayfulnessIcelandicSheepdog());
+        this.AddGene(icelandicSheepdogGeneNameList.Height, new Height(16, 19, 17));
+        this.AddGene(icelandicSheepdogGeneNameList.Weight, new Weight(20, 35, 25));
     }
 }
 

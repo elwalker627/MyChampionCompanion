@@ -16,6 +16,7 @@ public class GeneticsMinigame
     protected GeneNameListAbstract geneNameList;
     protected String breed;
     protected Names names;
+    public int Breedings { get; protected set; }
 
     /// <summary>
     /// Creates a genetics minigame object, which keeps track of the logic.
@@ -29,6 +30,7 @@ public class GeneticsMinigame
         this.breed = breed;
         this.names = new();
         int numberOfDogs = 4;
+        this.Breedings = 0;
 
         this.player = new(name);
 
@@ -71,6 +73,7 @@ public class GeneticsMinigame
                 throw new Exception("Breed not supported.");
         }
 
+        this.Breedings++;
         return returner;
     }
 

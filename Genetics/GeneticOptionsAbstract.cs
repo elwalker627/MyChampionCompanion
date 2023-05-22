@@ -67,6 +67,7 @@ public abstract class GeneticsOptionsAbstract
         this.AddGene(geneNameList.AffinityForScentwork, new AffinityForScentwork());
         this.AddGene(geneNameList.AffinityForDisc, new AffinityForDisc());
         this.AddGene(geneNameList.EyeHealth, new EyeHealth());
+        this.AddGene(geneNameList.Gender, new Gender());
     }
 
     /// <summary>

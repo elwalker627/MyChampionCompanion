@@ -36,6 +36,9 @@ public abstract class GeneNameListAbstract
     public String AffinityForBarnhunt { get { return new("affinity_for_barnhunt"); } }
     public String AffinityForScentwork { get { return new("affinity_for_scentwork"); } }
     public String AffinityForDisc { get { return new("affinity_for_disc"); } }
+    public String Gender { get { return "gender"; } }
+    public String Height { get { return "height"; } }
+    public String Weight { get { return "weight"; } }
     public String[] GeneNames { get { return geneNames.ToArray(); } }
 
     protected HashSet<String> geneNames;

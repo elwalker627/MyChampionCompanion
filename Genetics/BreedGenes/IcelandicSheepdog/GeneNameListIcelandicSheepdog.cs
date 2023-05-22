@@ -1,5 +1,4 @@
-﻿using Genetics;
-namespace Vocabulary;
+﻿namespace Vocabulary;
 
 /// <summary>
 /// An Icelandic Sheepdog's gene name list. Adds the front and rear dew claws.

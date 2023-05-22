@@ -1,8 +1,6 @@
 ﻿using Genetics;
-using Vocabulary;
 using System.Text;
 using System.Drawing;
-using System.Xml.Linq;
 
 namespace PunnettSquareSpace;
 
