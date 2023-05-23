@@ -59,6 +59,6 @@ public class Weight : GeneInformationAbstract
     protected override void GenerateAlleles()
     {
         for (int i = 1; i < 27; i++)
-            this.AddAllele((char)('a' + i), $"{i*5} pounds", Dominant);
+            this.AddAllele((char)('a' + i - 1), $"{i*5} pounds", Dominant);
     }
 }

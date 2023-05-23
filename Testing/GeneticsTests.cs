@@ -1235,7 +1235,7 @@ public class GeneticsTests
     public void IcelandicSheepdogMarkingsGetAnyAllele()
     {
         GeneInformationAbstract geneInfo = new MarkingsIcelandicSheepdog();
-        int times = 100;
+        int times = 200;
 
         HashSet<char> chars = new();
 

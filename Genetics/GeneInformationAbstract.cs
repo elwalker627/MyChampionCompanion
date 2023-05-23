@@ -94,12 +94,27 @@ public abstract class GeneInformationAbstract
     public AlleleBasic GetEthicalAllele()
     {
         Random random = new();
-        AlleleBasic allele;
-        do
-        {
-            allele = this.GetAnyAllele();
-        } while (IsUnethical(allele.Representation));
-        return allele;
+        AlleleBasic[] array = this.alleles.Values.ToArray();
+        RandomOrder<AlleleBasic>(array);
+        foreach (AlleleBasic allele in array)
+            if (!IsUnethical(allele.Representation))
+                return allele;
+
+        throw new Exception("No ethical allele found.");
+    }
+
+    private void RandomOrder<T>(T[] array)
+    {
+        Random random = new();
+        for (int i = 0; i < array.Count(); i++)
+            Swap<T>(array, i, random.Next(array.Count()));
+    }
+
+    private void Swap<T>(T[] array, int indexA, int indexB)
+    {
+        T temp = array[indexA];
+        array[indexA] = array[indexB];
+        array[indexB] = temp;
     }
 
     /// <summary>

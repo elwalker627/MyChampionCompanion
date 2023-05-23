@@ -23,11 +23,6 @@ public abstract class Dog
     public int HighAverageAge { get; protected set; }
 
     /// <summary>
-    /// True if the dog is a female, false if the dog is a male.
-    /// </summary>
-    public bool IsFemale { get; private set; }
-
-    /// <summary>
     /// True if unethical to breed and the breeder is an ethical breeder.
     /// False otherwise.
     /// </summary>
@@ -43,8 +38,22 @@ public abstract class Dog
     {
         this.Name = name;
         this.titles = new();
-        this.IsFemale = new Random().Next() % 2 == 0;
         this.SetConstants();
+    }
+
+    /// <summary>
+    /// Determines if the dog is a female dog.
+    /// </summary>
+    /// <param name="dog">The dog.</param>
+    /// <param name="geneNames">The gene names.</param>
+    /// <returns>True if the dog is a female, false if the dog is a male.
+    /// </returns>
+    public bool IsFemale(GeneNameListAbstract geneNames)
+    {
+        AlleleSet set = this.genetics.GetAlleleSet(geneNames.Gender);
+
+        return set.alleleA.Representation == 'x' &&
+            set.alleleB.Representation == 'x';
     }
 
     /// <summary>
@@ -57,7 +66,6 @@ public abstract class Dog
     {
         this.Name = names.GetRandomName();
         this.titles = new();
-        this.IsFemale = new Random().Next()%2 == 0;
         this.SetConstants();
     }
 

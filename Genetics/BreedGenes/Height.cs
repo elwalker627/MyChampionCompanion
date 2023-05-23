@@ -59,6 +59,6 @@ public class Height : GeneInformationAbstract
     protected override void GenerateAlleles()
     {
         for (int i = 1; i < 27; i++)
-            this.AddAllele((char)('a' + i), $"{i + 4} inches", Dominant);
+            this.AddAllele((char)('a' + i-1), $"{i + 4} inches", Dominant);
     }
 }

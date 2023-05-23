@@ -30,9 +30,12 @@ public class IcelandicSheepdog : Dog
     /// <param name="father">The father.</param>
     /// <param name="name">The name of the dog.</param>
     public IcelandicSheepdog(IcelandicSheepdog mother,
-        IcelandicSheepdog father, String name, bool isEthical)
-        : base(name)
+        IcelandicSheepdog father, String name, bool isEthical,
+        GeneNameListAbstract geneNames) : base(name)
     {
+        if (!mother.IsFemale(geneNames) || !father.IsFemale(geneNames))
+            throw new Exception("One or more parents are the wrong gender.");
+
         this.Pedigree = new Pedigree(mother.Pedigree, father.Pedigree, this);
 
         GeneNameListAbstract geneNameList = new GeneNameListIcelandicSheepdog();

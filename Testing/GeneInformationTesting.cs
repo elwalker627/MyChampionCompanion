@@ -3,7 +3,7 @@ namespace Testing;
 
 public class GeneInformationTesting : GeneInformationAbstract
 {
-    public GeneInformationTesting() : base()
+    public GeneInformationTesting() : base("Description", "Name")
     {
         this.IsCodominant = true;
     }

@@ -67,7 +67,7 @@ public class GeneticsMinigame
         {
             case "Icelandic Sheepdog":
                 for (int i = 0; i < mother.LowAverageLitterSize; i++)
-                    returner.Add(new Dog.IcelandicSheepdog((Dog.IcelandicSheepdog)mother, (Dog.IcelandicSheepdog)father, $"Puppy {i+1}", true));
+                    returner.Add(new Dog.IcelandicSheepdog((Dog.IcelandicSheepdog)mother, (Dog.IcelandicSheepdog)father, $"Puppy {i+1}", true, geneNameList));
                 break;
             default:
                 throw new Exception("Breed not supported.");

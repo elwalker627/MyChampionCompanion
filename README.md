@@ -13,16 +13,6 @@ Copyright:      Elise Walker
 
 Intended to be a fully functioning game based on genetics and ethical breeding.
 
-Currently has abstract classes for alleles and genes.
-
-# Definitions
-
-Please note that some of these definitions are synonyms, and their differences
-are based solely on the need for more words.
-
-Allele:     A single gene.
-Gene:       A location in the genetics where an allele lies.
-
 # Genetics
 
 This game is largely based on genetics. To make this as accurate as possible,
